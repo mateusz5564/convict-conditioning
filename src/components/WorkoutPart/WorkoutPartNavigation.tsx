@@ -1,19 +1,18 @@
 import { Grid } from "@mui/material";
-import { WorkoutPart } from "../../types";
+import { useWorkoutParts } from "../../context/WorkoutPart/WorkoutPart";
 import WorkoutPartLink from "./WorkoutPartLink";
 
-interface Props {
-  workoutParts: WorkoutPart[];
-}
+export default function WorkoutPartNavigation() {
+  const context = useWorkoutParts();
 
-export default function WorkoutPartNavigation({ workoutParts }: Props) {
   return (
-    <Grid container spacing={2}>
-      {workoutParts.map(workoutPart => (
-        <Grid item xs={4} key={workoutPart.id}>
-          <WorkoutPartLink>{workoutPart.category}</WorkoutPartLink>
-        </Grid>
-      ))}
+    <Grid container spacing={2} sx={{ mb: "12px" }}>
+      {context?.workoutParts &&
+        context.workoutParts.map(workoutPart => (
+          <Grid item xs={4} key={workoutPart.id}>
+            <WorkoutPartLink to={workoutPart.category}>{workoutPart.category}</WorkoutPartLink>
+          </Grid>
+        ))}
     </Grid>
   );
 }

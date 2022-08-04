@@ -1,18 +1,18 @@
 import WorkoutPartNavigation from "../components/WorkoutPart/WorkoutPartNavigation";
 import { Typography } from "@mui/material";
-import { WorkoutPart } from "../types";
+import WorkoutPart from "../components/WorkoutPart/WorkoutPart";
+import { Route, Routes } from "react-router-dom";
 
-interface Props {
-  workoutParts: WorkoutPart[] | undefined;
-}
-
-export default function WorkoutParts({ workoutParts }: Props) {
+export default function WorkoutParts() {
   return (
     <>
-      <Typography variant="h5" component="h1">
+      <Typography variant="h5" component="h1" sx={{ mb: "16px" }}>
         Workout Parts
       </Typography>
-      {workoutParts && <WorkoutPartNavigation workoutParts={workoutParts} />}
+      <WorkoutPartNavigation />
+      <Routes>
+        <Route path="/:category" element={<WorkoutPart />} />
+      </Routes>
     </>
   );
 }

@@ -30,7 +30,7 @@ export default function BottomNav() {
         <BottomNavigationAction
           label="Workout Parts"
           icon={<FitnessCenterIcon />}
-          onClick={() => navigate("/workout-parts")}
+          onClick={() => navigate("/workout-parts/pushups")}
         />
       </BottomNavigation>
     </Paper>
