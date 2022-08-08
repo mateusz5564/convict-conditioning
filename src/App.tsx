@@ -14,7 +14,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <WorkoutPartProvider>
         <CssBaseline />
-        <Container sx={{ padding: "12px" }}>
+        <Container sx={{ padding: "12px", paddingBottom: "80px" }}>
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/workout-parts/*" element={<WorkoutParts />} />
