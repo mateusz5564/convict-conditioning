@@ -10,7 +10,7 @@ export default function WorkoutPartNavigation() {
       {context?.workoutParts &&
         context.workoutParts.map(workoutPart => (
           <Grid item xs={4} key={workoutPart.id}>
-            <WorkoutPartLink to={workoutPart.category}>{workoutPart.category}</WorkoutPartLink>
+            <WorkoutPartLink to={`${workoutPart.category}/logs`}>{workoutPart.category}</WorkoutPartLink>
           </Grid>
         ))}
     </Grid>

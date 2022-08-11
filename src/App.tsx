@@ -18,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/workout-parts/*" element={<WorkoutParts />} />
+            <Route path="*" element={<div>Page not found</div>} />
           </Routes>
           <BottomNav />
         </Container>
