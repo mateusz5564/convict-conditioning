@@ -1,10 +1,10 @@
-enum ExerciseCategory {
-  Pushups = "Pushups",
-  LegRaises = "LegRaises",
-  Squats = "Squats",
-  Pullups = "Pullups",
-  Handstands = "Handstands",
-  Bridges = "Bridges",
+export enum ExerciseCategory {
+  Pushups = "pushups",
+  LegRaises = "leg-raises",
+  Squats = "squats",
+  Pullups = "pullups",
+  Handstands = "handstands",
+  Bridges = "bridges",
 }
 
 export interface Exercise {
@@ -17,6 +17,17 @@ export interface Exercise {
   lvl1: string;
   lvl2: string;
   lvl3: string;
+}
+
+export interface ExerciseLog {
+  id: number;
+  user_id: string;
+  created_at: Date;
+  exercise: {
+    name: string;
+    step: number;
+  };
+  reps: number[];
 }
 
 export interface WorkoutPart {

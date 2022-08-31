@@ -5,7 +5,7 @@ const getWorkoutParts = async () => {
     const { data } = await supabase
       .from("workout_part")
       .select(`*, exercises:exercise(*)`)
-      .order('step', { foreignTable: 'exercise' })
+      .order("step", { foreignTable: "exercise" });
     if (data) {
       return data;
     } else throw new Error("Couldn't fetch the data");

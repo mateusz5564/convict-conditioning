@@ -6,11 +6,13 @@ export default function WorkoutPartNavigation() {
   const context = useWorkoutParts();
 
   return (
-    <Grid container spacing={2} sx={{ mb: "12px" }}>
+    <Grid container spacing={2} sx={{ mb: 3 }}>
       {context?.workoutParts &&
         context.workoutParts.map(workoutPart => (
           <Grid item xs={4} key={workoutPart.id}>
-            <WorkoutPartLink to={`${workoutPart.category}/logs`}>{workoutPart.category}</WorkoutPartLink>
+            <WorkoutPartLink to={`${workoutPart.category}/logs`}>
+              {workoutPart.category}
+            </WorkoutPartLink>
           </Grid>
         ))}
     </Grid>
