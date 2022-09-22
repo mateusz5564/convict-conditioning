@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import exerciseService from "../../services/exercise";
 import { ExerciseCategory, ExerciseLog as ExerciseLogType } from "../../types";
+import AddExerciseLog from "./AddExerciseLog";
 import ExerciseLog from "./ExerciseLog";
 
 export default function ExerciseLogs() {
@@ -20,7 +21,8 @@ export default function ExerciseLogs() {
   if (!logs) return <div>Loading...</div>;
 
   return (
-    <h1>
+    <div>
+      <AddExerciseLog setLogs={setLogs} />
       {logs.map(log => (
         <ExerciseLog
           key={log.id}
@@ -32,6 +34,6 @@ export default function ExerciseLogs() {
           }}
         />
       ))}
-    </h1>
+    </div>
   );
 }
