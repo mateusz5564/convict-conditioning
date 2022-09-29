@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useLocation, useMatch, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useMatch, useNavigate } from "react-router-dom";
 
 import Paper from "@mui/material/Paper";
 import BottomNavigation from "@mui/material/BottomNavigation";
@@ -11,7 +11,7 @@ import { grey } from "@mui/material/colors";
 export default function BottomNav() {
   const matchesWorkoutParts = useMatch("workout-parts/*");
 
-  const [value, setValue] = useState<number | null>(matchesWorkoutParts ? 1 : 0);
+  const [value, setValue] = useState<number>(matchesWorkoutParts ? 1 : 0);
   const navigate = useNavigate();
 
   return (

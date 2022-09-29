@@ -1,29 +1,27 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import exerciseService from "../../services/exercise";
-import { ExerciseCategory, ExerciseLog as ExerciseLogType } from "../../types";
+import exerciseApi from "../../api/exercise";
+import { ExerciseCategory } from "../../types";
+import LoadingSpinner from "../CircularProgress/CircularProgress";
 import AddExerciseLog from "./AddExerciseLog";
 import ExerciseLog from "./ExerciseLog";
 
 export default function ExerciseLogs() {
   const { category } = useParams();
-  const [logs, setLogs] = useState<ExerciseLogType[] | undefined>();
+  const {
+    data: logs,
+    error,
+    isError,
+    isLoading,
+  } = exerciseApi.useFetchExericeLogs(category as ExerciseCategory);
 
-  useEffect(() => {
-    const getLogs = async () => {
-      const logs = await exerciseService.getExerciseLogsByCategory(category as ExerciseCategory);
-      setLogs(logs);
-    };
+  if (isLoading) return <LoadingSpinner />;
 
-    getLogs();
-  }, [category]);
-
-  if (!logs) return <div>Loading...</div>;
+  if (isError && error instanceof Error) return <div>Error! {error.message}</div>;
 
   return (
     <div>
-      <AddExerciseLog setLogs={setLogs} />
-      {logs.map(log => (
+      <AddExerciseLog />
+      {logs?.map(log => (
         <ExerciseLog
           key={log.id}
           exerciseLog={{

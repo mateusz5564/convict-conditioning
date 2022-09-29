@@ -12,9 +12,11 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-import { useWorkoutParts } from "../../context/WorkoutPart/WorkoutPart";
 import ExerciseInstructions from "../Exercise/ExerciseInstructions";
 import ExerciseLogs from "../Exercise/ExerciseLogs";
+import workoutPartApi from "../../api/workoutPart";
+import { Exercise } from "../../types";
+import LoadingSpinner from "../CircularProgress/CircularProgress";
 
 export default function WorkoutPart() {
   const matchInstructions = useMatch("/workout-parts/:category/instructions");
@@ -27,21 +29,20 @@ export default function WorkoutPart() {
   }, [matchInstructions]);
 
   const location = useLocation();
-
   const [value, setValue] = useState(getNavIndex());
   const { category } = useParams();
-  const context = useWorkoutParts();
   const navigate = useNavigate();
-
-  const workoutPart = context?.workoutParts.find(workoutPart => workoutPart.category === category);
+  const { data: workoutParts, isLoading, isError } = workoutPartApi.useFetchWorkoutParts();
 
   useEffect(() => {
     setValue(getNavIndex());
   }, [location, getNavIndex]);
 
-  if (!workoutPart) {
-    return <div>Loading...</div>;
-  }
+  if (isLoading) return <LoadingSpinner />;
+
+  if (isError) return <div>Error!</div>;
+
+  const workoutPartCategory = workoutParts?.find(workoutPart => workoutPart.category === category);
 
   return (
     <>
@@ -64,7 +65,7 @@ export default function WorkoutPart() {
           path="instructions"
           element={
             <Box sx={{ pb: "12px" }}>
-              {workoutPart.exercises.map(exercise => (
+              {workoutPartCategory.exercises.map((exercise: Exercise) => (
                 <ExerciseInstructions key={exercise.id} exercise={exercise} />
               ))}
             </Box>

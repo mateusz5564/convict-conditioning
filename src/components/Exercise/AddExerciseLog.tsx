@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useWorkoutParts } from "../../context/WorkoutPart/WorkoutPart";
-import exerciseService from "../../services/exercise";
-import { Exercise, ExerciseLog } from "../../types";
 import {
   Button,
   FormControl,
@@ -15,22 +12,32 @@ import {
   TextField,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import workoutPartApi from "../../api/workoutPart";
+import exerciseApi from "../../api/exercise";
+import { Exercise } from "../../types";
+import LoadingSpinner from "../CircularProgress/CircularProgress";
 
 interface Rep {
   value: number;
   error: Boolean;
 }
 
-export default function AddExerciseLog({ setLogs }: { setLogs: Function }) {
+export default function AddExerciseLog() {
   const [exercise, setExercise] = useState<number | "">("");
   const [exerciseError, setExerciseError] = useState<string>("");
   const [reps, setReps] = useState<Array<Rep>>([{ value: 0, error: false }]);
   const { category } = useParams();
-  const context = useWorkoutParts();
+  const { data: workoutParts, isLoading, isError } = workoutPartApi.useFetchWorkoutParts();
+  const mutation = exerciseApi.useAddExerciseLog();
 
-  const exercises = context?.workoutParts.find(
-    workoutPart => workoutPart.category === category
-  )?.exercises;
+  const getLabelForReps = (exercises: Exercise[] | undefined, exerciseId: number | "") => {
+    const exercise = exercises?.find(exercise => exercise.id === exerciseId);
+    if (!exercise) {
+      return "reps";
+    } else {
+      return exercise.lvl1.includes("x") ? "reps" : "secs";
+    }
+  };
 
   const handleExerciseChange = (e: SelectChangeEvent<number>) => {
     setExercise(e.target.value as number);
@@ -72,31 +79,27 @@ export default function AddExerciseLog({ setLogs }: { setLogs: Function }) {
 
     setReps(getRepsErrors());
 
-    const insertLog = async () => {
-      const data = await exerciseService.insertLog({
+    if (!hasError) {
+      mutation.mutate({
         reps: reps.map(rep => rep.value),
         exercise: exercise as number,
       });
-      if (data) {
-        setExercise("");
-        setReps([{ value: 0, error: false }]);
-        setLogs((logs: ExerciseLog[]) => data.concat(logs));
-      }
-    };
-
-    if (!hasError) {
-      insertLog();
+      setReps([{ value: 0, error: false }]);
+      setExercise("");
     }
   };
 
-  const getLabelForReps = (exercises: Exercise[] | undefined, exerciseId: number | "") => {
-    const exercise = exercises?.find(exercise => exercise.id === exerciseId);
-    if (!exercise) {
-      return "reps";
-    } else {
-      return exercise.lvl1.includes("x") ? "reps" : "secs";
-    }
-  };
+  if (isLoading) {
+    return <LoadingSpinner />;
+  }
+
+  if (isError) {
+    return <div>Error...</div>;
+  }
+
+  let exercises: Exercise[] = workoutParts?.find(
+    workoutPart => workoutPart.category === category
+  )?.exercises;
 
   return (
     <Paper sx={{ padding: 1, mb: 1 }}>

@@ -24,6 +24,7 @@ export interface ExerciseLog {
   user_id: string;
   created_at: Date;
   exercise: {
+    category: string;
     name: string;
     step: number;
   };
