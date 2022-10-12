@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 
 import workoutPartApi from "../../api/workoutPart";
-import LoadingSpinner from "../CircularProgress/CircularProgress";
+import LoadingSpinner from "../../components/CircularProgress/CircularProgress";
 import WorkoutPartLink from "./WorkoutPartLink";
 
 export default function WorkoutPartNavigation() {
