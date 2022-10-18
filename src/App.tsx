@@ -1,4 +1,4 @@
-import BottomNav from "./components/BottomNav/BottomNav";
+import BottomNav from "./features/BottomNav";
 import WorkoutParts from "./pages/WorkoutParts";
 import Overview from "./pages/Overview";
 import { Route, Routes } from "react-router-dom";

@@ -1,9 +1,5 @@
 import Typography from "@mui/material/Typography";
-import { useAuthContext } from "../components/Auth/hooks/useAuthContext";
-import AuthDialog from "../components/Auth/Dialog";
-import Login from "../components/Auth/Login";
-import Register from "../components/Auth/Register";
-import useSignOut from "../components/Auth/hooks/useSignOut";
+import { LoginDialog, RegisterDialog, useAuthContext, useSignOut } from "../features/Auth";
 import { LoadingButton } from "@mui/lab";
 
 export default function Overview() {
@@ -15,12 +11,8 @@ export default function Overview() {
       <Typography variant="h5" component="h1" textAlign="center">
         Work in progress...
       </Typography>
-      <AuthDialog btnTitle="Register">
-        <Register />
-      </AuthDialog>
-      <AuthDialog btnTitle="Login">
-        <Login />
-      </AuthDialog>
+      <LoginDialog />
+      <RegisterDialog />
       <LoadingButton
         loading={isLoading}
         loadingIndicator="Loading..."

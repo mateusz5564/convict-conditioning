@@ -1,15 +1,10 @@
 import { Grid } from "@mui/material";
 
-import workoutPartApi from "../../api/workoutPart";
-import LoadingSpinner from "../../components/CircularProgress/CircularProgress";
+import workoutPartApi from "../../../../api/workoutPart";
 import WorkoutPartLink from "./WorkoutPartLink";
 
 export default function WorkoutPartNavigation() {
-  const { data: workoutParts, isLoading, isError } = workoutPartApi.useFetchWorkoutParts();
-
-  if (isLoading) {
-    return <LoadingSpinner />;
-  }
+  const { data: workoutParts, isError } = workoutPartApi.useFetchWorkoutParts();
 
   if (isError) {
     return <div>Error</div>;

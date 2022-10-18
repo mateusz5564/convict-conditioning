@@ -1,4 +1,4 @@
-import { supabase } from "../../../supabaseClient";
+import { supabase } from "../../../supabase/supabaseClient";
 import { useMutation } from "react-query";
 import { UserCredentials } from "@supabase/supabase-js";
 

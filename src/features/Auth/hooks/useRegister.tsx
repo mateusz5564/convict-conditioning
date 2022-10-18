@@ -1,6 +1,6 @@
 import { UserCredentials } from "@supabase/supabase-js";
 import { useMutation } from "react-query";
-import { supabase } from "../../../supabaseClient";
+import { supabase } from "../../../supabase/supabaseClient";
 
 const useRegister = () => {
   const mutation = useMutation(async (credentials: UserCredentials) => {

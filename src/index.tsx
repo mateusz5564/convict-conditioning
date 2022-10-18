@@ -7,7 +7,7 @@ import { ReactQueryDevtools } from "react-query/devtools";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import theme from "./theme";
-import { AuthContextProvider } from "./components/Auth/context/AuthContext";
+import { AuthContextProvider } from "./features/Auth";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 

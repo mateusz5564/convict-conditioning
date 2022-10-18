@@ -1,5 +1,5 @@
 import { QueryKey, useMutation, useQuery, useQueryClient } from "react-query";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../supabase/supabaseClient";
 import { ExerciseCategory } from "../types";
 
 const useFetchExericeLogs = (category: ExerciseCategory) =>

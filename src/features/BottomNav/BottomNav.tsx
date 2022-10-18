@@ -15,7 +15,7 @@ export default function BottomNav() {
   const navigate = useNavigate();
 
   return (
-    <Paper sx={{ width: "100%", position: "fixed", bottom: 0, left: 0 }}>
+    <Paper sx={{ width: "100%", position: "fixed", bottom: 0, left: 0 }} elevation={3}>
       <BottomNavigation
         sx={{ backgroundColor: grey[900], height: "80px" }}
         showLabels

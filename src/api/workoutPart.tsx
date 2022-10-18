@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { supabase } from "../supabaseClient";
+import { supabase } from "../supabase/supabaseClient";
 
 const useFetchWorkoutParts = () => useQuery("workout-parts", getWorkoutParts);
 

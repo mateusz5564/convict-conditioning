@@ -12,11 +12,11 @@ import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 
-import ExerciseInstructions from "../Exercise/ExerciseInstructions";
-import ExerciseLogs from "../Exercise/ExerciseLogs";
-import workoutPartApi from "../../api/workoutPart";
-import { Exercise } from "../../types";
-import LoadingSpinner from "../../components/CircularProgress/CircularProgress";
+import ExerciseInstructions from "../Exercises/ExerciseInstructions";
+import ExerciseLogs from "../Exercises/ExerciseLogs";
+import workoutPartApi from "../../../../api/workoutPart";
+import { Exercise } from "../../../../types";
+import LoadingSpinner from "../../../../components/CircularProgress/CircularProgress";
 
 export default function WorkoutPart() {
   const matchInstructions = useMatch("/workout-parts/:category/instructions");

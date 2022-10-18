@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { supabase } from "../../../supabaseClient";
+import { supabase } from "../../../supabase/supabaseClient";
 
 const useSignOut = () => {
   const mutation = useMutation(async () => {
