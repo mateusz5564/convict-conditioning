@@ -6,7 +6,6 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import AssessmentIcon from "@mui/icons-material/Assessment";
-import { grey } from "@mui/material/colors";
 
 export default function BottomNav() {
   const matchesWorkoutParts = useMatch("workout-parts/*");
@@ -15,9 +14,9 @@ export default function BottomNav() {
   const navigate = useNavigate();
 
   return (
-    <Paper sx={{ width: "100%", position: "fixed", bottom: 0, left: 0 }} elevation={3}>
+    <Paper sx={{ width: "100%", position: "fixed", bottom: 0, left: 0 }} elevation={12}>
       <BottomNavigation
-        sx={{ backgroundColor: grey[900], height: "80px" }}
+        sx={{ height: "80px" }}
         showLabels
         value={value}
         onChange={(event, newValue) => {
