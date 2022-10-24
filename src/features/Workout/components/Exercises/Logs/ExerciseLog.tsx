@@ -1,7 +1,7 @@
 import { Stack, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
-import { formatExerciseDate } from "../../utils/date";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { formatExerciseDate } from "../../../utils/date";
 
 interface Props {
   exerciseLog: { created_at: Date; name: string; step: number; reps: number[] };

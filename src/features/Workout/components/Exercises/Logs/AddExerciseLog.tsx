@@ -2,12 +2,12 @@ import { useParams } from "react-router-dom";
 import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
 import { Button, MenuItem, Paper, Stack } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import workoutPartApi from "../../../../api/workoutPart";
-import exerciseApi from "../../../../api/exercise";
-import { Exercise } from "../../../../types";
-import LoadingSpinner from "../../../../components/CircularProgress/CircularProgress";
-import TextField from "../../../../components/Forms/TextField";
-import Select from "../../../../components/Forms/Select";
+import workoutPartApi from "../../../../../api/workoutPart";
+import exerciseApi from "../../../../../api/exercise";
+import LoadingSpinner from "../../../../../components/CircularProgress/CircularProgress";
+import TextField from "../../../../../components/Forms/TextField";
+import Select from "../../../../../components/Forms/Select";
+import { Exercise } from "../../../../../types";
 
 type Inputs = {
   exerciseId: number | "";

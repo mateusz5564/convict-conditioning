@@ -3,13 +3,13 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Exercise } from "../../../../types";
+import { Exercise } from "../../../../../types";
 
 interface Props {
   exercise: Exercise;
 }
 
-export default function ExerciseInstructions({ exercise }: Props) {
+const ExerciseInstruction = ({ exercise }: Props) => {
   return (
     <Accordion>
       <AccordionSummary
@@ -26,4 +26,6 @@ export default function ExerciseInstructions({ exercise }: Props) {
       </AccordionDetails>
     </Accordion>
   );
-}
+};
+
+export default ExerciseInstruction;

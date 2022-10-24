@@ -1,27 +1,20 @@
-import { Button, Dialog, DialogActions, IconButton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { Dialog, DialogActions, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { useState } from "react";
+import useBackgroundLocation from "../../hooks/useBackgroundLocation";
+import { ChildrenProp } from "../../types";
 
-type Props = {
-  btnTitle: string;
-  children: React.ReactNode;
-};
-
-const AuthDialog = ({ btnTitle, children }: Props) => {
-  const [open, setOpen] = useState<boolean>(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+const AuthDialog = ({ children }: ChildrenProp) => {
+  const backgroundLocation = useBackgroundLocation();
+  const navigate = useNavigate();
 
   const handleClose = () => {
-    setOpen(false);
+    navigate(backgroundLocation || "/");
   };
 
   return (
     <>
-      <Button onClick={handleClickOpen}>{btnTitle}</Button>
-      <Dialog open={open} onClose={handleClose} fullScreen>
+      <Dialog open={true} onClose={handleClose}>
         <DialogActions>
           <IconButton onClick={handleClose}>
             <CloseIcon />

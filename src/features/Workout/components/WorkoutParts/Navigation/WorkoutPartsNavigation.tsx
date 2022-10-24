@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 
-import workoutPartApi from "../../../../api/workoutPart";
-import WorkoutPartLink from "./WorkoutPartLink";
+import workoutPartApi from "../../../../../api/workoutPart";
+import WorkoutPartLink from "./WorkoutPartsLink";
 
 export default function WorkoutPartNavigation() {
   const { data: workoutParts, isError } = workoutPartApi.useFetchWorkoutParts();

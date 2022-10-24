@@ -1,30 +1,35 @@
-import { Typography, Container } from "@mui/material";
+import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Typography, Container } from "@mui/material";
+import useBackgroundLocation from "../hooks/useBackgroundLocation";
+import useLogin from "../hooks/useLogin";
 import PasswordField from "../../../components/Forms/PasswordField";
 import TextField from "../../../components/Forms/TextField";
-import useLogin from "../hooks/useLogin";
-import { TInputs } from "../types";
-import { defaultFormValues, inputRules } from "../helpers";
 import { AuthDivider } from "./shared/AuthDivider";
 import AuthDialog from "./shared/Dialog";
 import { ErrorAlert } from "./shared/ErrorAlert";
 import { Form } from "./shared/Form";
 import { SubmitButton } from "./shared/SubmitButton";
 import { Title } from "./shared/Title";
+import { TInputs } from "../types";
+import { defaultFormValues, inputRules } from "../helpers";
 
 const LoginDialog = () => {
+  const backgroundLocation = useBackgroundLocation();
   const { mutate: login, error, isError, isLoading } = useLogin();
-
   const { control, handleSubmit } = useForm<TInputs>({
     defaultValues: defaultFormValues,
   });
+
+  const backgroundLocationRef = useRef(backgroundLocation);
 
   const onLogin = (data: TInputs) => {
     login(data);
   };
 
   return (
-    <AuthDialog btnTitle="Login">
+    <AuthDialog>
       <Container>
         <Title>Log in to your account</Title>
         <Form handleSubmit={handleSubmit} submitHandler={onLogin}>
@@ -54,7 +59,16 @@ const LoginDialog = () => {
 
         <AuthDivider>or</AuthDivider>
         <Typography>Sign in with google</Typography>
-        <Typography>Don't have an account? Sign Up</Typography>
+        <Typography>
+          Don't have an account?
+          <Link
+            to="/register"
+            replace
+            state={{ backgroundLocation: backgroundLocationRef.current }}
+          >
+            Sign Up
+          </Link>
+        </Typography>
       </Container>
     </AuthDialog>
   );

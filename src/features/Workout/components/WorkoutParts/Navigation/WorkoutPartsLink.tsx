@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
-import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
-import { Stack } from "@mui/material";
-import { useTheme } from "@mui/material";
+import { Stack, useTheme } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import SportsMartialArtsIcon from "@mui/icons-material/SportsMartialArts";
 
 interface Props {
   children: string;
