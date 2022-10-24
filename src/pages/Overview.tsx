@@ -1,12 +1,9 @@
 import Typography from "@mui/material/Typography";
-import { DialogLink, useAuthContext, useSignOut } from "../features/Auth";
+import { DialogLink } from "../features/Auth";
 import { useLocation } from "react-router-dom";
-import { LoadingButton } from "@mui/lab";
 
 export default function Overview() {
   const location = useLocation();
-  const auth = useAuthContext();
-  const { isLoading, mutate: signOut } = useSignOut();
 
   return (
     <>
@@ -20,16 +17,6 @@ export default function Overview() {
       <DialogLink to="/register" backgroundLocation={location}>
         Register
       </DialogLink>
-      <LoadingButton
-        loading={isLoading}
-        loadingIndicator="Loading..."
-        onClick={() => {
-          signOut();
-        }}
-      >
-        Sign out
-      </LoadingButton>
-      <Typography>{auth?.email}</Typography>
     </>
   );
 }

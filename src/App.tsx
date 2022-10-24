@@ -2,9 +2,10 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { Container } from "@mui/material";
 import Overview from "./pages/Overview";
 import WorkoutParts from "./pages/WorkoutParts";
-import { LoginDialog, RegisterDialog, useBackgroundLocation } from "./features/Auth";
+import { AccountMenu, LoginDialog, RegisterDialog, useBackgroundLocation } from "./features/Auth";
 import BottomNav from "./features/BottomNav";
 import { ExerciseInstructions, ExerciseLogs, WorkoutPart } from "./features/Workout";
+import AccountSettings from "./pages/AccountSettings";
 
 function App() {
   const location = useLocation();
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <Container sx={{ padding: "12px", paddingBottom: "80px" }}>
+      <AccountMenu />
       <Routes location={appLocation}>
         <Route path="/" element={<Overview />} />
         <Route path="/workout-parts" element={<WorkoutParts />}>
@@ -25,6 +27,7 @@ function App() {
             <Route path="instructions" element={<ExerciseInstructions />} />
           </Route>
         </Route>
+        <Route path="account/settings" element={<AccountSettings />} />
         <Route path="/login" element={<Overview />} />
         <Route path="/register" element={<Overview />} />
         <Route path="*" element={<div>Page not found</div>} />
