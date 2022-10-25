@@ -5,6 +5,7 @@ import { Container, Typography } from "@mui/material";
 import PasswordField from "../../../components/Forms/PasswordField";
 import TextField from "../../../components/Forms/TextField";
 import useBackgroundLocation from "../hooks/useBackgroundLocation";
+import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
 import useRegister from "../hooks/useRegister";
 import { AuthDivider } from "./shared/AuthDivider";
 import { ErrorAlert } from "./shared/ErrorAlert";
@@ -17,8 +18,9 @@ import { TInputs } from "../types";
 
 const RegisterDialog = () => {
   const backgroundLocation = useBackgroundLocation();
-  const { mutate: register, error, isError, isLoading } = useRegister();
+  const { mutate: register, error, isError, isLoading, isSuccess } = useRegister();
   const { control, handleSubmit } = useForm<TInputs>({ defaultValues: defaultFormValues });
+  useNavigateOnSuccess(isSuccess, backgroundLocation);
 
   const backgroundLocationRef = useRef(backgroundLocation || "/");
 

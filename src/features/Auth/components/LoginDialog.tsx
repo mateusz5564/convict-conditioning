@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Typography, Container } from "@mui/material";
 import useBackgroundLocation from "../hooks/useBackgroundLocation";
+import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
 import useLogin from "../hooks/useLogin";
 import PasswordField from "../../../components/Forms/PasswordField";
 import TextField from "../../../components/Forms/TextField";
@@ -17,10 +18,11 @@ import { defaultFormValues, inputRules } from "../helpers";
 
 const LoginDialog = () => {
   const backgroundLocation = useBackgroundLocation();
-  const { mutate: login, error, isError, isLoading } = useLogin();
+  const { mutate: login, error, isError, isLoading, isSuccess } = useLogin();
   const { control, handleSubmit } = useForm<TInputs>({
     defaultValues: defaultFormValues,
   });
+  useNavigateOnSuccess(isSuccess, backgroundLocation);
 
   const backgroundLocationRef = useRef(backgroundLocation);
 
