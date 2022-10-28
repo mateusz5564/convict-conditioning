@@ -58,6 +58,8 @@ const AccountMenu = () => {
             "& a": {
               color: "currentcolor",
               textDecoration: "none",
+              display: "flex",
+              alignItems: "center",
             },
           }}
         >

@@ -32,7 +32,7 @@ const LoginDialog = () => {
 
   return (
     <AuthDialog>
-      <Container>
+      <Container sx={{ pb: 2 }}>
         <Title>Log in to your account</Title>
         <Form handleSubmit={handleSubmit} submitHandler={onLogin}>
           <TextField
@@ -61,7 +61,7 @@ const LoginDialog = () => {
 
         <AuthDivider>or</AuthDivider>
         <Typography>Sign in with google</Typography>
-        <Typography>
+        <Typography sx={{ "& a": { color: "primary.main", ml: 1 } }}>
           Don't have an account?
           <Link
             to="/register"

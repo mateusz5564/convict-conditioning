@@ -30,7 +30,7 @@ const RegisterDialog = () => {
 
   return (
     <AuthDialog>
-      <Container>
+      <Container sx={{ pb: 2 }}>
         <Title>Create your account</Title>
         <Form handleSubmit={handleSubmit} submitHandler={onRegister}>
           <TextField
@@ -51,7 +51,7 @@ const RegisterDialog = () => {
 
         <Typography>Sign up with google</Typography>
 
-        <Typography>
+        <Typography sx={{ "& a": { color: "primary.main", ml: 1 } }}>
           Already have an account?{" "}
           <Link to="/login" replace state={{ backgroundLocation: backgroundLocationRef.current }}>
             Sign in

@@ -5,8 +5,8 @@ import { useBackgroundLocation } from "../../../Auth";
 
 const ExercisesNavigation = () => {
   const location = useLocation();
-  const backgroundLocation = useBackgroundLocation();
   const navigate = useNavigate();
+  const backgroundLocation = useBackgroundLocation();
   const matchLogs = useMatch("workout-parts/:category/logs");
   const backgroundMatchLogs =
     backgroundLocation?.pathname &&
@@ -23,7 +23,7 @@ const ExercisesNavigation = () => {
   }, [backgroundLocation, backgroundMatchLogs, location, matchLogs]);
 
   return (
-    <Box sx={{ width: "100%", my: "12px" }}>
+    <Box sx={{ width: "100%", my: 2 }}>
       <Tabs
         value={value}
         onChange={(e, newValue) => {
