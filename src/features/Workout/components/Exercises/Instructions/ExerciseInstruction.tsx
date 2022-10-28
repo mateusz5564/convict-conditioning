@@ -4,6 +4,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Exercise } from "../../../../../types";
+import EmbedYTVideo from "../../../../../components/EmbedYTVideo/EmbedYTVideo";
 
 interface Props {
   exercise: Exercise;
@@ -22,7 +23,8 @@ const ExerciseInstruction = ({ exercise }: Props) => {
         </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Typography>{exercise.description}</Typography>
+        <Typography sx={{ mb: 2 }}>{exercise.description}</Typography>
+        {exercise.yt_video_id && <EmbedYTVideo videoId={exercise.yt_video_id} />}
       </AccordionDetails>
     </Accordion>
   );

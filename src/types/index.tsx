@@ -17,6 +17,7 @@ export interface Exercise {
   lvl1: string;
   lvl2: string;
   lvl3: string;
+  yt_video_id: string;
 }
 
 export interface ExerciseLog {
