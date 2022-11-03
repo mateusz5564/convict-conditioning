@@ -3,7 +3,7 @@ import { Location, useNavigate } from "react-router-dom";
 
 const useNavigateOnSuccess = (
   isSuccess: boolean,
-  backgroundLocation: Partial<Location> | undefined
+  backgroundLocation: Partial<Location> | undefined,
 ) => {
   const navigate = useNavigate();
 

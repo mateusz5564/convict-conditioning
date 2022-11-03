@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+
 import { Exercise } from "../../../../../types";
 import { useWorkoutPartCategory } from "../../WorkoutParts/WorkoutPart";
 import ExerciseInstruction from "./ExerciseInstruction";

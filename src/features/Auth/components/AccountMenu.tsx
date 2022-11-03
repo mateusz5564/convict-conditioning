@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Logout from "@mui/icons-material/Logout";
+import Settings from "@mui/icons-material/Settings";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import ListItemIcon from "@mui/material/ListItemIcon";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import Tooltip from "@mui/material/Tooltip";
-import Settings from "@mui/icons-material/Settings";
-import Logout from "@mui/icons-material/Logout";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+
+import useAuthContext from "../hooks/useAuthContext";
 import useSignOut from "../hooks/useSignOut";
-import { useAuthContext } from "../hooks/useAuthContext";
 
 const AccountMenu = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -29,7 +31,14 @@ const AccountMenu = () => {
 
   return (
     <>
-      <Box sx={{ display: "flex", justifyContent: "flex-end", alignItems: "center", mb: 3 }}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          alignItems: "center",
+          mb: 3,
+        }}
+      >
         <Tooltip title="Account">
           <Button
             endIcon={<AccountCircleIcon />}

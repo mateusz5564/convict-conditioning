@@ -1,27 +1,37 @@
 import { useState } from "react";
-import { Control, Controller, FieldPath, FieldValues, RegisterOptions } from "react-hook-form";
-import IconButton from "@mui/material/IconButton";
-import OutlinedInput, { OutlinedInputProps } from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormControl from "@mui/material/FormControl";
+import {
+  Control,
+  Controller,
+  FieldPath,
+  FieldValues,
+  RegisterOptions,
+} from "react-hook-form";
+
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { FormHelperText } from "@mui/material";
+import FormControl from "@mui/material/FormControl";
+import IconButton from "@mui/material/IconButton";
+import InputAdornment from "@mui/material/InputAdornment";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput, { OutlinedInputProps } from "@mui/material/OutlinedInput";
 
 type Props<TFieldValues extends FieldValues> = OutlinedInputProps & {
   name: FieldPath<TFieldValues>;
   control: Control<TFieldValues>;
-  rules: Exclude<RegisterOptions, "valueAsNumber" | "valueAsDate" | "setValueAs">;
+  rules: Exclude<
+    RegisterOptions,
+    "valueAsNumber" | "valueAsDate" | "setValueAs"
+  >;
 };
 
-export default function PasswordField<TFieldValues extends {}>({
+const PasswordField = <TFieldValues extends {}>({
   name,
   control,
   rules,
   sx,
   ...rest
-}: Props<TFieldValues>) {
+}: Props<TFieldValues>) => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const handleClickShowPassword = () => {
@@ -62,6 +72,8 @@ export default function PasswordField<TFieldValues extends {}>({
           <FormHelperText>{error?.message}</FormHelperText>
         </FormControl>
       )}
-    ></Controller>
+    />
   );
-}
+};
+
+export default PasswordField;

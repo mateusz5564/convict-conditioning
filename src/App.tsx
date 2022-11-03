@@ -1,7 +1,8 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+
 import { Container } from "@mui/material";
-import Overview from "./pages/Overview";
-import WorkoutParts from "./pages/WorkoutParts";
+
+import NoUser from "./components/NoUser/NoUser";
 import {
   AccountMenu,
   LoginDialog,
@@ -10,18 +11,25 @@ import {
   useBackgroundLocation,
 } from "./features/Auth";
 import BottomNav from "./features/BottomNav";
-import { ExerciseInstructions, ExerciseLogs, WorkoutPart } from "./features/Workout";
+import {
+  ExerciseInstructions,
+  ExerciseLogs,
+  WorkoutPart,
+} from "./features/Workout";
 import AccountSettings from "./pages/AccountSettings";
-import NoUser from "./components/NoUser/NoUser";
+import Overview from "./pages/Overview";
+import WorkoutParts from "./pages/WorkoutParts";
 
-function App() {
+const App = () => {
   const user = useAuthContext();
   const location = useLocation();
   const backgroundLocation = useBackgroundLocation();
 
   const appLocation =
     backgroundLocation ||
-    (location.pathname === "/register" || location.pathname === "/login" ? "/" : location);
+    (location.pathname === "/register" || location.pathname === "/login"
+      ? "/"
+      : location);
 
   return (
     <Container sx={{ padding: "12px", paddingBottom: "80px" }}>
@@ -58,6 +66,6 @@ function App() {
       <BottomNav />
     </Container>
   );
-}
+};
 
 export default App;

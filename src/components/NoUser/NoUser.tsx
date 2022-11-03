@@ -1,6 +1,8 @@
 import { useLocation } from "react-router-dom";
-import { Paper, Typography } from "@mui/material";
+
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { Paper, Typography } from "@mui/material";
+
 import { DialogLink } from "../../features/Auth";
 
 type Props = {

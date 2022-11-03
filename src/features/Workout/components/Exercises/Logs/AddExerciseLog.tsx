@@ -1,12 +1,15 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import { useForm, SubmitHandler, useFieldArray } from "react-hook-form";
-import { Button, MenuItem, Paper, Stack } from "@mui/material";
+
 import AddIcon from "@mui/icons-material/Add";
-import workoutPartApi from "../../../../../api/workoutPart";
+import { Button, MenuItem, Paper, Stack } from "@mui/material";
+
 import exerciseApi from "../../../../../api/exercise";
+import workoutPartApi from "../../../../../api/workoutPart";
 import LoadingSpinner from "../../../../../components/CircularProgress/CircularProgress";
-import TextField from "../../../../../components/Forms/TextField";
 import Select from "../../../../../components/Forms/Select";
+import TextField from "../../../../../components/Forms/TextField";
 import { Exercise } from "../../../../../types";
 
 type Inputs = {
@@ -14,9 +17,13 @@ type Inputs = {
   reps: { value: number }[];
 };
 
-export default function AddExerciseLog() {
+const AddExerciseLog = () => {
   const { category } = useParams();
-  const { data: workoutParts, isLoading, isError } = workoutPartApi.useFetchWorkoutParts();
+  const {
+    data: workoutParts,
+    isLoading,
+    isError,
+  } = workoutPartApi.useFetchWorkoutParts();
   const mutation = exerciseApi.useAddExerciseLog();
   const defaultFormValues: Inputs = { exerciseId: "", reps: [{ value: 0 }] };
 
@@ -28,26 +35,33 @@ export default function AddExerciseLog() {
     reset,
   } = useForm<Inputs>({ defaultValues: defaultFormValues });
 
-  const { fields: reps, append: appendRep } = useFieldArray({ name: "reps", control });
+  const { fields: reps, append: appendRep } = useFieldArray({
+    name: "reps",
+    control,
+  });
 
   const exercise = getValues("exerciseId");
 
-  const getLabelForReps = (exercises: Exercise[] | undefined, exerciseId: number | "") => {
-    const exercise = exercises?.find(exercise => exercise.id === exerciseId);
+  const getLabelForReps = (
+    exercises: Exercise[] | undefined,
+    exerciseId: number | "",
+  ) => {
+    const exerciseToLabel = exercises?.find(
+      (exercise) => exercise.id === exerciseId,
+    );
     if (!exercise) {
       return "reps";
-    } else {
-      return exercise.lvl1.includes("x") ? "reps" : "secs";
     }
+    return exerciseToLabel?.lvl1.includes("x") ? "reps" : "secs";
   };
 
   const onAddSet = () => {
     appendRep({ value: 0 });
   };
 
-  const onSubmitExerciseLog: SubmitHandler<Inputs> = (data, e) => {
+  const onSubmitExerciseLog: SubmitHandler<Inputs> = (data) => {
     mutation.mutate({
-      reps: data.reps.map(rep => rep.value),
+      reps: data.reps.map((rep) => rep.value),
       exercise: data.exerciseId as number,
     });
     reset(defaultFormValues);
@@ -61,12 +75,16 @@ export default function AddExerciseLog() {
     return <div>Error...</div>;
   }
 
-  let exercises: Exercise[] = workoutParts?.find(
-    workoutPart => workoutPart.category === category
+  const exercises: Exercise[] = workoutParts?.find(
+    (workoutPart) => workoutPart.category === category,
   )?.exercises;
 
   return (
-    <Paper component="form" onSubmit={handleSubmit(onSubmitExerciseLog)} sx={{ padding: 1, mb: 1 }}>
+    <Paper
+      component="form"
+      onSubmit={handleSubmit(onSubmitExerciseLog)}
+      sx={{ padding: 1, mb: 1 }}
+    >
       <Stack flexDirection="row" flexWrap="wrap">
         <Select
           name="exerciseId"
@@ -74,9 +92,9 @@ export default function AddExerciseLog() {
           rules={{ required: true }}
           sx={{ width: "8.75rem", mr: "0.5rem", mb: "0.5rem" }}
         >
-          {exercises?.map(exercise => (
+          {exercises?.map((exercise) => (
             <MenuItem key={exercise.id} value={exercise.id}>
-              {exercise.name} - {exercise.step}
+              {exercise.name} -{exercise.step}
             </MenuItem>
           ))}
         </Select>
@@ -93,12 +111,17 @@ export default function AddExerciseLog() {
             size="small"
             type="number"
             label={getLabelForReps(exercises, exercise)}
-            error={errors.reps?.[i] ? true : false}
+            error={!!errors.reps?.[i]}
             sx={{ maxWidth: "4.125rem", mr: "0.5rem", mb: "0.5rem" }}
           />
         ))}
 
-        <Button onClick={onAddSet} variant="outlined" startIcon={<AddIcon />} sx={{ mb: "0.5rem" }}>
+        <Button
+          onClick={onAddSet}
+          variant="outlined"
+          startIcon={<AddIcon />}
+          sx={{ mb: "0.5rem" }}
+        >
           Set
         </Button>
       </Stack>
@@ -110,4 +133,6 @@ export default function AddExerciseLog() {
       </Stack>
     </Paper>
   );
-}
+};
+
+export default AddExerciseLog;

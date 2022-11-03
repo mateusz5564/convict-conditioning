@@ -1,4 +1,8 @@
-import { FieldValues, SubmitHandler, UseFormHandleSubmit } from "react-hook-form";
+import {
+  FieldValues,
+  SubmitHandler,
+  UseFormHandleSubmit,
+} from "react-hook-form";
 
 export type TInputs = {
   email: string;

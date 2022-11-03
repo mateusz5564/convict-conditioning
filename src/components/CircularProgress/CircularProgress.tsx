@@ -1,12 +1,12 @@
-import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 
-function LoadingSpinner() {
+const LoadingSpinner = () => {
   return (
     <Box sx={{ display: "flex", justifyContent: "center" }}>
       <CircularProgress />
     </Box>
   );
-}
+};
 
 export default LoadingSpinner;

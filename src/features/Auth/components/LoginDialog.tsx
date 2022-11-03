@@ -1,20 +1,22 @@
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { Typography, Container } from "@mui/material";
-import useBackgroundLocation from "../hooks/useBackgroundLocation";
-import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
-import useLogin from "../hooks/useLogin";
+import { Link } from "react-router-dom";
+
+import { Container, Typography } from "@mui/material";
+
 import PasswordField from "../../../components/Forms/PasswordField";
 import TextField from "../../../components/Forms/TextField";
-import { AuthDivider } from "./shared/AuthDivider";
-import AuthDialog from "./shared/Dialog";
-import { ErrorAlert } from "./shared/ErrorAlert";
-import { Form } from "./shared/Form";
-import { SubmitButton } from "./shared/SubmitButton";
-import { Title } from "./shared/Title";
-import { TInputs } from "../types";
 import { defaultFormValues, inputRules } from "../helpers";
+import useBackgroundLocation from "../hooks/useBackgroundLocation";
+import useLogin from "../hooks/useLogin";
+import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
+import { TInputs } from "../types";
+import AuthDivider from "./shared/AuthDivider";
+import AuthDialog from "./shared/Dialog";
+import ErrorAlert from "./shared/ErrorAlert";
+import Form from "./shared/Form";
+import SubmitButton from "./shared/SubmitButton";
+import Title from "./shared/Title";
 
 const LoginDialog = () => {
   const backgroundLocation = useBackgroundLocation();
@@ -55,7 +57,9 @@ const LoginDialog = () => {
             Forgot Password?
           </Typography>
 
-          {isError && error instanceof Error && <ErrorAlert>{error.message}</ErrorAlert>}
+          {isError && error instanceof Error && (
+            <ErrorAlert>{error.message}</ErrorAlert>
+          )}
           <SubmitButton loading={isLoading}>Sign In</SubmitButton>
         </Form>
 

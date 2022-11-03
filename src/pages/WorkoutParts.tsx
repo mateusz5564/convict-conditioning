@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
+
 import { WorkoutPartNavigation } from "../features/Workout";
 
-export default function WorkoutParts() {
+const WorkoutParts = () => {
   return (
     <>
       <WorkoutPartNavigation />
       <Outlet />
     </>
   );
-}
+};
+
+export default WorkoutParts;

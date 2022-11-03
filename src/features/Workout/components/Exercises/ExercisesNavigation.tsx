@@ -1,6 +1,13 @@
-import { Box, Tab, Tabs } from "@mui/material";
 import { useEffect, useState } from "react";
-import { matchPath, useLocation, useMatch, useNavigate } from "react-router-dom";
+import {
+  matchPath,
+  useLocation,
+  useMatch,
+  useNavigate,
+} from "react-router-dom";
+
+import { Box, Tab, Tabs } from "@mui/material";
+
 import { useBackgroundLocation } from "../../../Auth";
 
 const ExercisesNavigation = () => {
@@ -31,8 +38,12 @@ const ExercisesNavigation = () => {
         }}
         centered
       >
-        <Tab value={"logs"} label="Logs" onClick={() => navigate("logs")} />
-        <Tab value={"instructions"} label="Instructions" onClick={() => navigate("instructions")} />
+        <Tab value="logs" label="Logs" onClick={() => navigate("logs")} />
+        <Tab
+          value="instructions"
+          label="Instructions"
+          onClick={() => navigate("instructions")}
+        />
       </Tabs>
     </Box>
   );

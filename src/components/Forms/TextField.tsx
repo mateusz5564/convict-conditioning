@@ -1,10 +1,20 @@
+import {
+  Control,
+  Controller,
+  FieldPath,
+  FieldValues,
+  RegisterOptions,
+} from "react-hook-form";
+
 import { TextField as MuiTextField, TextFieldProps } from "@mui/material";
-import { Control, Controller, FieldPath, FieldValues, RegisterOptions } from "react-hook-form";
 
 type Props<TFieldValues extends FieldValues> = TextFieldProps & {
   name: FieldPath<TFieldValues>;
   control: Control<TFieldValues>;
-  rules: Exclude<RegisterOptions, "valueAsNumber" | "valueAsDate" | "setValueAs">;
+  rules: Exclude<
+    RegisterOptions,
+    "valueAsNumber" | "valueAsDate" | "setValueAs"
+  >;
 };
 
 const TextField = <TFieldValues extends {}>({
@@ -26,7 +36,7 @@ const TextField = <TFieldValues extends {}>({
           helperText={error?.message}
         />
       )}
-    ></Controller>
+    />
   );
 };
 

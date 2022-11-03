@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { Divider, SvgIcon, Tab, Tabs } from "@mui/material";
 
 import workoutPartApi from "../../../../../api/workoutPart";
-import { ReactComponent as PushUpsSvg } from "../../../../../assets/icons/pushups.svg";
-import { ReactComponent as LegRaisesSvg } from "../../../../../assets/icons/leg-raises.svg";
-import { ReactComponent as SquatsSvg } from "../../../../../assets/icons/squats.svg";
-import { ReactComponent as PullUpsSvg } from "../../../../../assets/icons/pullups.svg";
-import { ReactComponent as HandstandsSvg } from "../../../../../assets/icons/handstands.svg";
 import { ReactComponent as BridgesSvg } from "../../../../../assets/icons/bridges.svg";
+import { ReactComponent as HandstandsSvg } from "../../../../../assets/icons/handstands.svg";
+import { ReactComponent as LegRaisesSvg } from "../../../../../assets/icons/leg-raises.svg";
+import { ReactComponent as PullUpsSvg } from "../../../../../assets/icons/pullups.svg";
+import { ReactComponent as PushUpsSvg } from "../../../../../assets/icons/pushups.svg";
+import { ReactComponent as SquatsSvg } from "../../../../../assets/icons/squats.svg";
 import { ExerciseCategory } from "../../../../../types";
 
-export default function WorkoutPartNavigation() {
+const WorkoutPartsNavigation = () => {
   const navigate = useNavigate();
   const params = useParams();
   const { data: workoutParts, isError } = workoutPartApi.useFetchWorkoutParts();
@@ -41,12 +42,15 @@ export default function WorkoutPartNavigation() {
         allowScrollButtonsMobile
         aria-label="Workout parts navigation"
       >
-        {workoutParts?.map(workoutPart => (
+        {workoutParts?.map((workoutPart) => (
           <Tab
             key={workoutPart.category}
             value={workoutPart.category}
             icon={
-              <SvgIcon component={icons[workoutPart.category as ExerciseCategory]} inheritViewBox />
+              <SvgIcon
+                component={icons[workoutPart.category as ExerciseCategory]}
+                inheritViewBox
+              />
             }
             label={workoutPart.category}
             onClick={() => navigate(`${workoutPart.category}/logs`)}
@@ -56,4 +60,6 @@ export default function WorkoutPartNavigation() {
       <Divider />
     </>
   );
-}
+};
+
+export default WorkoutPartsNavigation;

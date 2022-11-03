@@ -1,11 +1,26 @@
-import { FormControl, InputLabel, Select as MuiSelect, SxProps } from "@mui/material";
 import { ReactNode } from "react";
-import { Control, Controller, FieldPath, FieldValues, RegisterOptions } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  FieldPath,
+  FieldValues,
+  RegisterOptions,
+} from "react-hook-form";
+
+import {
+  FormControl,
+  InputLabel,
+  Select as MuiSelect,
+  SxProps,
+} from "@mui/material";
 
 type Props<TFieldValues extends FieldValues> = {
   name: FieldPath<TFieldValues>;
   control: Control<TFieldValues>;
-  rules: Exclude<RegisterOptions, "valueAsNumber" | "valueAsDate" | "setValueAs">;
+  rules: Exclude<
+    RegisterOptions,
+    "valueAsNumber" | "valueAsDate" | "setValueAs"
+  >;
   sx: SxProps;
   children: ReactNode;
 };

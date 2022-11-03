@@ -1,5 +1,7 @@
-import { Box } from "@mui/material";
+import { FC } from "react";
 import { Link, Location } from "react-router-dom";
+
+import { Box } from "@mui/material";
 
 type Props = {
   to: "/login" | "/register";
@@ -8,7 +10,12 @@ type Props = {
   replace?: boolean;
 };
 
-const DialogLink = ({ to, backgroundLocation, children, replace = false }: Props) => {
+const DialogLink: FC<Props> = ({
+  to,
+  backgroundLocation,
+  children,
+  replace = false,
+}: Props) => {
   return (
     <Box
       sx={{
@@ -25,11 +32,15 @@ const DialogLink = ({ to, backgroundLocation, children, replace = false }: Props
         },
       }}
     >
-      <Link to={to} replace={replace} state={{ backgroundLocation: backgroundLocation }}>
+      <Link to={to} replace={replace} state={{ backgroundLocation }}>
         {children}
       </Link>
     </Box>
   );
+};
+
+DialogLink.defaultProps = {
+  replace: false,
 };
 
 export default DialogLink;

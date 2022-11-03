@@ -1,15 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App";
-import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { ThemeProvider } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import theme from "./theme";
-import { AuthContextProvider } from "./features/Auth";
+import { BrowserRouter } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+
+import App from "./App";
+import { AuthContextProvider } from "./features/Auth";
+import theme from "./theme";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement,
+);
 
 const queryClient = new QueryClient();
 
@@ -26,5 +30,5 @@ root.render(
         </QueryClientProvider>
       </AuthContextProvider>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

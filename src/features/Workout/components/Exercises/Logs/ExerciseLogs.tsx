@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom";
+
 import exerciseApi from "../../../../../api/exercise";
 import LoadingSpinner from "../../../../../components/CircularProgress/CircularProgress";
+import { ExerciseCategory } from "../../../../../types";
 import AddExerciseLog from "./AddExerciseLog";
 import ExerciseLog from "./ExerciseLog";
-import { ExerciseCategory } from "../../../../../types";
 import NoLogs from "./NoLogs";
 
-export default function ExerciseLogs() {
+const ExerciseLogs = () => {
   const { category } = useParams();
   const {
     data: logs,
@@ -17,13 +18,20 @@ export default function ExerciseLogs() {
 
   if (isLoading) return <LoadingSpinner />;
 
-  if (isError && error instanceof Error) return <div>Error! {error.message}</div>;
+  if (isError && error instanceof Error) {
+    return (
+      <div>
+        Error!
+        {error.message}
+      </div>
+    );
+  }
 
   return (
     <div>
       <AddExerciseLog />
       {logs?.length === 0 && <NoLogs />}
-      {logs?.map(log => (
+      {logs?.map((log) => (
         <ExerciseLog
           key={log.id}
           exerciseLog={{
@@ -36,4 +44,6 @@ export default function ExerciseLogs() {
       ))}
     </div>
   );
-}
+};
+
+export default ExerciseLogs;
