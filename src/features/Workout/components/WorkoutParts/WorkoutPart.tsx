@@ -1,8 +1,9 @@
 import { Outlet, useOutletContext, useParams } from "react-router-dom";
 
-import workoutPartApi from "../../../../api/workoutPart";
-import LoadingSpinner from "../../../../components/CircularProgress/CircularProgress";
-import { WorkoutPart as WorkoutPartType } from "../../../../types";
+import workoutPartApi from "api/workoutPart";
+import LoadingSpinner from "components/CircularProgress/CircularProgress";
+import { WorkoutPart as WorkoutPartType } from "types";
+
 import ExercisesNavigation from "../Exercises/ExercisesNavigation";
 
 type ContextType = { workoutPartCategory: WorkoutPartType };

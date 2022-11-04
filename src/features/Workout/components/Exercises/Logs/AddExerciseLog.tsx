@@ -4,13 +4,12 @@ import { useParams } from "react-router-dom";
 
 import AddIcon from "@mui/icons-material/Add";
 import { Button, MenuItem, Paper, Stack } from "@mui/material";
-
-import exerciseApi from "../../../../../api/exercise";
-import workoutPartApi from "../../../../../api/workoutPart";
-import LoadingSpinner from "../../../../../components/CircularProgress/CircularProgress";
-import Select from "../../../../../components/Forms/Select";
-import TextField from "../../../../../components/Forms/TextField";
-import { Exercise } from "../../../../../types";
+import exerciseApi from "api/exercise";
+import workoutPartApi from "api/workoutPart";
+import LoadingSpinner from "components/CircularProgress/CircularProgress";
+import Select from "components/Forms/Select";
+import TextField from "components/Forms/TextField";
+import { Exercise } from "types";
 
 type Inputs = {
   exerciseId: number | "";

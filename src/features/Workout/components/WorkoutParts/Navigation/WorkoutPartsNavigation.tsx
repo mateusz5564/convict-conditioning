@@ -2,15 +2,14 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Divider, SvgIcon, Tab, Tabs } from "@mui/material";
-
-import workoutPartApi from "../../../../../api/workoutPart";
-import { ReactComponent as BridgesSvg } from "../../../../../assets/icons/bridges.svg";
-import { ReactComponent as HandstandsSvg } from "../../../../../assets/icons/handstands.svg";
-import { ReactComponent as LegRaisesSvg } from "../../../../../assets/icons/leg-raises.svg";
-import { ReactComponent as PullUpsSvg } from "../../../../../assets/icons/pullups.svg";
-import { ReactComponent as PushUpsSvg } from "../../../../../assets/icons/pushups.svg";
-import { ReactComponent as SquatsSvg } from "../../../../../assets/icons/squats.svg";
-import { ExerciseCategory } from "../../../../../types";
+import workoutPartApi from "api/workoutPart";
+import { ReactComponent as BridgesSvg } from "assets/icons/bridges.svg";
+import { ReactComponent as HandstandsSvg } from "assets/icons/handstands.svg";
+import { ReactComponent as LegRaisesSvg } from "assets/icons/leg-raises.svg";
+import { ReactComponent as PullUpsSvg } from "assets/icons/pullups.svg";
+import { ReactComponent as PushUpsSvg } from "assets/icons/pushups.svg";
+import { ReactComponent as SquatsSvg } from "assets/icons/squats.svg";
+import { ExerciseCategory } from "types";
 
 const WorkoutPartsNavigation = () => {
   const navigate = useNavigate();

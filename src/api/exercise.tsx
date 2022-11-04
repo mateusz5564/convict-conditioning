@@ -1,7 +1,7 @@
 import { QueryKey, useMutation, useQuery, useQueryClient } from "react-query";
 
-import supabase from "../supabase/supabaseClient";
-import { ExerciseCategory } from "../types";
+import supabase from "supabase/supabaseClient";
+import { ExerciseCategory } from "types";
 
 const getExerciseLogsByCategory = async ({
   queryKey,

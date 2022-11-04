@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-import supabase from "../supabase/supabaseClient";
+import supabase from "supabase/supabaseClient";
 
 const getWorkoutParts = async () => {
   const { data, error } = await supabase

@@ -3,9 +3,9 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import { Container, Typography } from "@mui/material";
+import PasswordField from "components/Forms/PasswordField";
+import TextField from "components/Forms/TextField";
 
-import PasswordField from "../../../components/Forms/PasswordField";
-import TextField from "../../../components/Forms/TextField";
 import { defaultFormValues, inputRules } from "../helpers";
 import useBackgroundLocation from "../hooks/useBackgroundLocation";
 import useLogin from "../hooks/useLogin";

@@ -3,7 +3,7 @@
   "semi": true,
   "trailingComma": "all",
   "endOfLine": "auto",
-  "importOrder": ["^react", "^@mui", "^[./]"],
-	"importOrderSeparation": true,
-	"importOrderSortSpecifiers": true
+  "importOrder": ["^react(.*)$", "<THIRD_PARTY_MODULES>", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

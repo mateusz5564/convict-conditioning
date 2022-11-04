@@ -1,8 +1,7 @@
-import { User } from "@supabase/supabase-js";
-
 import React, { createContext, useEffect, useState } from "react";
 
-import supabase from "../../../supabase/supabaseClient";
+import { User } from "@supabase/supabase-js";
+import supabase from "supabase/supabaseClient";
 
 export const AuthContext = createContext<User | null | undefined>(null);
 

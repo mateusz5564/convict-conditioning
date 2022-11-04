@@ -1,21 +1,21 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { Container } from "@mui/material";
-
-import NoUser from "./components/NoUser/NoUser";
+import NoUser from "components/NoUser/NoUser";
 import {
   AccountMenu,
   LoginDialog,
   RegisterDialog,
   useAuthContext,
   useBackgroundLocation,
-} from "./features/Auth";
-import BottomNav from "./features/BottomNav";
+} from "features/Auth";
+import BottomNav from "features/BottomNav";
 import {
   ExerciseInstructions,
   ExerciseLogs,
   WorkoutPart,
-} from "./features/Workout";
+} from "features/Workout";
+
 import AccountSettings from "./pages/AccountSettings";
 import Overview from "./pages/Overview";
 import WorkoutParts from "./pages/WorkoutParts";

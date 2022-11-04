@@ -1,8 +1,9 @@
 import { useParams } from "react-router-dom";
 
-import exerciseApi from "../../../../../api/exercise";
-import LoadingSpinner from "../../../../../components/CircularProgress/CircularProgress";
-import { ExerciseCategory } from "../../../../../types";
+import exerciseApi from "api/exercise";
+import LoadingSpinner from "components/CircularProgress/CircularProgress";
+import { ExerciseCategory } from "types";
+
 import AddExerciseLog from "./AddExerciseLog";
 import ExerciseLog from "./ExerciseLog";
 import NoLogs from "./NoLogs";

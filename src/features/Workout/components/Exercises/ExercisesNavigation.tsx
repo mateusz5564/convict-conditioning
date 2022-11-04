@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 
 import { Box, Tab, Tabs } from "@mui/material";
-
-import { useBackgroundLocation } from "../../../Auth";
+import { useBackgroundLocation } from "features/Auth";
 
 const ExercisesNavigation = () => {
   const location = useLocation();

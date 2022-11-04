@@ -6,10 +6,10 @@ import { BrowserRouter } from "react-router-dom";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
+import { AuthContextProvider } from "features/Auth";
+import theme from "theme";
 
 import App from "./App";
-import { AuthContextProvider } from "./features/Auth";
-import theme from "./theme";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
