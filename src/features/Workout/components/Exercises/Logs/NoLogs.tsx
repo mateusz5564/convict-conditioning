@@ -3,7 +3,7 @@ import { Paper } from "@mui/material";
 
 const NoLogs = () => {
   return (
-    <Paper sx={{ padding: 1, textAlign: "center" }}>
+    <Paper sx={{ padding: 2, textAlign: "center" }}>
       <DoNotDisturbIcon
         fontSize="large"
         sx={{ display: "block", mx: "auto", mb: 1 }}

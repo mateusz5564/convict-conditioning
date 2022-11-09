@@ -82,7 +82,7 @@ const AddExerciseLog = () => {
     <Paper
       component="form"
       onSubmit={handleSubmit(onSubmitExerciseLog)}
-      sx={{ padding: 1, mb: 1 }}
+      sx={{ padding: 2, mb: 1 }}
     >
       <Stack flexDirection="row" flexWrap="wrap">
         <Select

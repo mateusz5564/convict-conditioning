@@ -10,7 +10,7 @@ const getExerciseLogsByCategory = async ({
 }) => {
   const { data, error } = await supabase
     .from("workout_logs")
-    .select("id, created_at, reps, exercise!inner(category, name, step)")
+    .select("id, created_at, reps, exercise!inner(id, category, name, step)")
     .eq("exercise.category", queryKey[1])
     .order("created_at", { ascending: false });
 
@@ -23,7 +23,7 @@ const insertLog = async (row: { reps: Array<number>; exercise: number }) => {
   const { data, error } = await supabase
     .from("workout_logs")
     .insert([row])
-    .select("id, created_at, reps, exercise!inner(category, name, step)");
+    .select("id, created_at, reps, exercise!inner(id, category, name, step)");
 
   if (error) throw new Error(error.message);
 

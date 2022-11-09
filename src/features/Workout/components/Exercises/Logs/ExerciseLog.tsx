@@ -1,22 +1,26 @@
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Stack, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
-
-import { formatExerciseDate } from "../../../utils/date";
+import { getDayAndMonth } from "utils/date";
 
 interface Props {
-  exerciseLog: { created_at: Date; name: string; step: number; reps: number[] };
+  exerciseLog: {
+    created_at: string;
+    name: string;
+    step: number;
+    reps: number[];
+  };
 }
 
 const ExerciseLog = ({ exerciseLog }: Props) => {
   return (
-    <Paper sx={{ padding: 1, mb: 1 }}>
+    <Paper sx={{ padding: 2, mb: 1 }}>
       <Stack flexDirection="row" justifyContent="space-between">
-        <Typography variant="h6">
-          {exerciseLog.name} -{exerciseLog.step}
+        <Typography variant="h6" sx={{ mr: 2 }}>
+          {exerciseLog.name} - {exerciseLog.step}
         </Typography>
         <Typography variant="caption">
-          {formatExerciseDate(exerciseLog.created_at)}
+          {getDayAndMonth(exerciseLog.created_at)}
         </Typography>
       </Stack>
       <Stack flexDirection="row" alignItems="center" sx={{ mt: 1 }}>

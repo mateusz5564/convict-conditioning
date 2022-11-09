@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 
 import exerciseApi from "api/exercise";
 import LoadingSpinner from "components/CircularProgress/CircularProgress";
+import { ExerciseRepsLineChart } from "features/Charts";
 import { ExerciseCategory } from "types";
 
 import AddExerciseLog from "./AddExerciseLog";
@@ -30,6 +31,7 @@ const ExerciseLogs = () => {
 
   return (
     <div>
+      {logs && <ExerciseRepsLineChart workoutPartlogs={logs} />}
       <AddExerciseLog />
       {logs?.length === 0 && <NoLogs />}
       {logs?.map((log) => (

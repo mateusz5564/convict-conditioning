@@ -23,8 +23,9 @@ export interface Exercise {
 export interface ExerciseLog {
   id: number;
   user_id: string;
-  created_at: Date;
+  created_at: string;
   exercise: {
+    id: string;
     category: string;
     name: string;
     step: number;
