@@ -29,7 +29,7 @@ const AddExerciseLog = () => {
   const {
     control,
     formState: { errors },
-    getValues,
+    watch,
     handleSubmit,
     reset,
   } = useForm<Inputs>({ defaultValues: defaultFormValues });
@@ -39,7 +39,7 @@ const AddExerciseLog = () => {
     control,
   });
 
-  const exercise = getValues("exerciseId");
+  const exercise = watch("exerciseId");
 
   const getLabelForReps = (
     exercises: Exercise[] | undefined,
@@ -93,7 +93,7 @@ const AddExerciseLog = () => {
         >
           {exercises?.map((exercise) => (
             <MenuItem key={exercise.id} value={exercise.id}>
-              {exercise.name} -{exercise.step}
+              {exercise.name} - {exercise.step}
             </MenuItem>
           ))}
         </Select>
