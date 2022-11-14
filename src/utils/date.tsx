@@ -14,4 +14,11 @@ const isOlderThan30Days = (timestamp: Date | string) => {
   return difference > 30 * 24 * 60 * 60 * 1000;
 };
 
-export { getDayAndMonth, isOlderThan30Days };
+const getDaysBefore = (numOfDays: number) => {
+  const now = new Date();
+  const from = new Date(now.getTime() - numOfDays * (24 * 60 * 60 * 1000));
+
+  return from;
+};
+
+export { getDayAndMonth, getDaysBefore, isOlderThan30Days };

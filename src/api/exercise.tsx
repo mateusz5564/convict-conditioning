@@ -19,6 +19,14 @@ const getExerciseLogsByCategory = async ({
   return data;
 };
 
+const getExerciseLogsPerDay = async () => {
+  const { data, error } = await supabase.rpc("exercises_per_day");
+
+  if (error) throw new Error(error.message);
+
+  return data;
+};
+
 const insertLog = async (row: { reps: Array<number>; exercise: number }) => {
   const { data, error } = await supabase
     .from("workout_logs")
@@ -33,6 +41,9 @@ const insertLog = async (row: { reps: Array<number>; exercise: number }) => {
 const useFetchExericeLogs = (category: ExerciseCategory) =>
   useQuery(["exercise-logs", category], getExerciseLogsByCategory);
 
+const useFetchExerciseLogsPerDay = () =>
+  useQuery(["exercise-logs"], getExerciseLogsPerDay);
+
 const useAddExerciseLog = () => {
   const queryClient = useQueryClient();
 
@@ -46,6 +57,7 @@ const useAddExerciseLog = () => {
 const exerciseApi = {
   useAddExerciseLog,
   useFetchExericeLogs,
+  useFetchExerciseLogsPerDay,
 };
 
 export default exerciseApi;

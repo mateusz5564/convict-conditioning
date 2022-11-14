@@ -1,4 +1,4 @@
-import ExerciseRepsLineChart from "./ExerciseRepsLineChart";
+import ExerciseRepsLineChart from "./components/ExerciseRepsLineChart";
+import RepsCalendarChart from "./components/RepsCalendarChart";
 
-// eslint-disable-next-line import/prefer-default-export
-export { ExerciseRepsLineChart };
+export { ExerciseRepsLineChart, RepsCalendarChart };

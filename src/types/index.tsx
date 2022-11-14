@@ -33,6 +33,11 @@ export interface ExerciseLog {
   reps: number[];
 }
 
+export interface ExerciseLogsPerDay {
+  day: string;
+  value: number;
+}
+
 export interface WorkoutPart {
   id: number;
   category: ExerciseCategory;
