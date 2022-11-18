@@ -1,7 +1,7 @@
 import Typography from "@mui/material/Typography";
 import exerciseApi from "api/exercise";
 import LoadingSpinner from "components/CircularProgress/CircularProgress";
-import { RepsCalendarChart } from "features/Charts";
+import { RepsCalendarChart, WorkoutPartProgressCharts } from "features/Charts";
 
 const Overview = () => {
   const { data, isError, isLoading } = exerciseApi.useFetchExerciseLogsPerDay();
@@ -16,6 +16,7 @@ const Overview = () => {
         Work in progress...
       </Typography>
       {data && <RepsCalendarChart exerciseLogs={data} />}
+      <WorkoutPartProgressCharts />
     </>
   );
 };

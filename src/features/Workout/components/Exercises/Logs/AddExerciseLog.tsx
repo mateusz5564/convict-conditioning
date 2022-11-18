@@ -11,6 +11,8 @@ import Select from "components/Forms/Select";
 import TextField from "components/Forms/TextField";
 import { Exercise } from "types";
 
+import { getLabelForReps } from "../../../helpers";
+
 type Inputs = {
   exerciseId: number | "";
   reps: { value: number }[];
@@ -24,8 +26,8 @@ const AddExerciseLog = () => {
     isError,
   } = workoutPartApi.useFetchWorkoutParts();
   const mutation = exerciseApi.useAddExerciseLog();
-  const defaultFormValues: Inputs = { exerciseId: "", reps: [{ value: 0 }] };
 
+  const defaultFormValues: Inputs = { exerciseId: "", reps: [{ value: 0 }] };
   const {
     control,
     formState: { errors },
@@ -33,7 +35,6 @@ const AddExerciseLog = () => {
     handleSubmit,
     reset,
   } = useForm<Inputs>({ defaultValues: defaultFormValues });
-
   const { fields: reps, append: appendRep } = useFieldArray({
     name: "reps",
     control,
@@ -41,27 +42,21 @@ const AddExerciseLog = () => {
 
   const exercise = watch("exerciseId");
 
-  const getLabelForReps = (
-    exercises: Exercise[] | undefined,
-    exerciseId: number | "",
-  ) => {
-    const exerciseToLabel = exercises?.find(
-      (exercise) => exercise.id === exerciseId,
-    );
-    if (!exercise) {
-      return "reps";
-    }
-    return exerciseToLabel?.lvl1.includes("x") ? "reps" : "secs";
-  };
+  const exercises: Exercise[] = workoutParts?.find(
+    (workoutPart) => workoutPart.category === category,
+  )?.exercises;
 
   const onAddSet = () => {
     appendRep({ value: 0 });
   };
 
   const onSubmitExerciseLog: SubmitHandler<Inputs> = (data) => {
+    const exercise = exercises.find(
+      (exercise) => exercise.id === data.exerciseId,
+    );
     mutation.mutate({
       reps: data.reps.map((rep) => rep.value),
-      exercise: data.exerciseId as number,
+      exercise: exercise as Exercise,
     });
     reset(defaultFormValues);
   };
@@ -73,10 +68,6 @@ const AddExerciseLog = () => {
   if (isError) {
     return <div>Error...</div>;
   }
-
-  const exercises: Exercise[] = workoutParts?.find(
-    (workoutPart) => workoutPart.category === category,
-  )?.exercises;
 
   return (
     <Paper

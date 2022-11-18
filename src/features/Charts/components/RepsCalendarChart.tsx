@@ -1,10 +1,11 @@
 import { Box, Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import { blue } from "@mui/material/colors";
 import { useTheme } from "@mui/material/styles";
 import { ResponsiveTimeRange } from "@nivo/calendar";
 import { ExerciseLogsPerDay } from "types";
 import { getDaysBefore } from "utils/date";
+
+import useChartTheme from "../theme";
 
 const RepsCalendarChart = ({
   exerciseLogs,
@@ -12,6 +13,7 @@ const RepsCalendarChart = ({
   exerciseLogs: Array<ExerciseLogsPerDay>;
 }) => {
   const theme = useTheme();
+  const chartTheme = useChartTheme();
   const oneYearEarlier = getDaysBefore(365);
 
   const chartData = exerciseLogs?.map((day) => ({
@@ -46,16 +48,13 @@ const RepsCalendarChart = ({
             to={new Date()}
             minValue={1}
             emptyColor={theme.palette.grey[800]}
-            colors={[blue[900], blue[600], blue[300]]}
+            colors={[
+              theme.palette.primary.dark,
+              theme.palette.primary.main,
+              theme.palette.primary.light,
+            ]}
             margin={{ top: 20, right: 0, bottom: 0, left: 5 }}
-            theme={{
-              textColor: theme.palette.text.primary,
-              tooltip: {
-                container: {
-                  background: theme.palette.grey[700],
-                },
-              },
-            }}
+            theme={chartTheme}
             dayBorderWidth={0}
             daySpacing={4}
             dayRadius={2}

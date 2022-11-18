@@ -1,16 +1,17 @@
 import InsightsIcon from "@mui/icons-material/Insights";
 import { Box, Paper, Typography } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
 import { ResponsiveLine } from "@nivo/line";
 import { ExerciseLog } from "types";
 import { isOlderThan30Days } from "utils/date";
+
+import useChartTheme from "../theme";
 
 const LineChart = ({
   workoutPartlogs,
 }: {
   workoutPartlogs: Array<ExerciseLog>;
 }) => {
-  const theme = useTheme();
+  const chartTheme = useChartTheme();
 
   const getChartData = () => {
     if (workoutPartlogs.length < 2) return [];
@@ -60,14 +61,7 @@ const LineChart = ({
       </Typography>
       <Box sx={{ height: "150px" }}>
         <ResponsiveLine
-          theme={{
-            textColor: theme.palette.text.primary,
-            tooltip: {
-              container: {
-                background: theme.palette.grey[700],
-              },
-            },
-          }}
+          theme={chartTheme}
           data={chartData}
           margin={{ top: 10, right: 10, bottom: 30, left: 25 }}
           xScale={{
