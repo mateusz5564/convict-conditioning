@@ -31,7 +31,7 @@ const ExerciseLogs = () => {
 
   return (
     <div>
-      {logs && <ExerciseRepsLineChart workoutPartlogs={logs} />}
+      {logs && <ExerciseRepsLineChart workoutPartLogs={logs} />}
       <AddExerciseLog />
       {logs?.length === 0 && <NoLogs />}
       {logs?.map((log) => (
