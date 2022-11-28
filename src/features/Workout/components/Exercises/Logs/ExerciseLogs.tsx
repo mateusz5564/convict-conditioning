@@ -1,22 +1,21 @@
-import { useParams } from "react-router-dom";
-
 import exerciseApi from "api/exercise";
 import LoadingSpinner from "components/CircularProgress/CircularProgress";
 import { ExerciseRepsLineChart } from "features/Charts";
 import { ExerciseCategory } from "types";
 
+import useWorkoutPartContext from "../../../hooks/useWorkoutPartContext";
 import AddExerciseLog from "./AddExerciseLog";
 import ExerciseLog from "./ExerciseLog";
 import NoLogs from "./NoLogs";
 
 const ExerciseLogs = () => {
-  const { category } = useParams();
+  const { workoutPart } = useWorkoutPartContext();
   const {
     data: logs,
     error,
     isError,
     isLoading,
-  } = exerciseApi.useFetchExericeLogs(category as ExerciseCategory);
+  } = exerciseApi.useFetchExericeLogs(workoutPart.category as ExerciseCategory);
 
   if (isLoading) return <LoadingSpinner />;
 

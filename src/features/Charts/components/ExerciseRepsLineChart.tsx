@@ -31,7 +31,7 @@ const LineChart = ({
   return (
     <Paper elevation={2} sx={{ padding: 2, mb: 2 }}>
       <Typography sx={{ mb: 1 }} variant="body2">
-        Recent exercise reps last month
+        Latest exercise reps last month
       </Typography>
       <Box sx={{ height: "150px" }}>
         <ResponsiveLine
