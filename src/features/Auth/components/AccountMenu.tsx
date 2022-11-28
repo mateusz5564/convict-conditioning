@@ -36,7 +36,7 @@ const AccountMenu = () => {
           display: "flex",
           justifyContent: "flex-end",
           alignItems: "center",
-          mb: 3,
+          mb: 2,
         }}
       >
         <Tooltip title="Account">
