@@ -16,7 +16,7 @@ const NoUser = ({ text }: Props) => {
       <PersonAddIcon fontSize="large" sx={{ display: "block", mx: "auto" }} />
       <Typography sx={{ mb: 2 }}>{text}</Typography>
       <DialogLink to="/login" backgroundLocation={location}>
-        Sign In or Create Account
+        Sign In
       </DialogLink>
     </Paper>
   );

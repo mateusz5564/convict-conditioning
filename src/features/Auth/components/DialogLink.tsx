@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { Link, Location } from "react-router-dom";
 
-import { Box } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Button } from "@mui/material";
 
 type Props = {
   to: "/login" | "/register";
@@ -17,25 +18,16 @@ const DialogLink: FC<Props> = ({
   replace = false,
 }: Props) => {
   return (
-    <Box
-      sx={{
-        "& a": {
-          display: "inline-block",
-          py: 1,
-          px: 2,
-          color: "primary.main",
-          textDecoration: "none",
-          textTransform: "uppercase",
-          borderWidth: 1,
-          borderStyle: "solid",
-          borderRadius: 1,
-        },
-      }}
+    <Link
+      to={to}
+      replace={replace}
+      state={{ backgroundLocation }}
+      style={{ textDecoration: "none" }}
     >
-      <Link to={to} replace={replace} state={{ backgroundLocation }}>
+      <Button variant="outlined" startIcon={<AccountCircleIcon />}>
         {children}
-      </Link>
-    </Box>
+      </Button>
+    </Link>
   );
 };
 
