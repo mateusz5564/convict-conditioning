@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
+import { useQueryClient } from "react-query";
 
 import { User } from "@supabase/supabase-js";
 import supabase from "supabase/supabaseClient";
@@ -11,6 +12,7 @@ export const AuthContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [user, setUser] = useState<User | null | undefined>(null);
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     const session = supabase.auth.session();
@@ -19,6 +21,7 @@ export const AuthContextProvider = ({
     const { data: listener } = supabase.auth.onAuthStateChange(
       (event, changedSession) => {
         setUser(changedSession?.user);
+        queryClient.invalidateQueries();
       },
     );
 

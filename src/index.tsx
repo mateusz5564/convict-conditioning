@@ -20,15 +20,15 @@ const queryClient = new QueryClient();
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthContextProvider>
-        <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
+        <AuthContextProvider>
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <App />
             <ReactQueryDevtools initialIsOpen={false} />
           </ThemeProvider>
-        </QueryClientProvider>
-      </AuthContextProvider>
+        </AuthContextProvider>
+      </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>,
 );
