@@ -3,22 +3,27 @@ import { QueryKey, useMutation, useQuery, useQueryClient } from "react-query";
 import supabase from "supabase/supabaseClient";
 import { Exercise, ExerciseCategory } from "types";
 
-import { getLvlReached, getTopLevelsReached } from "./helpers";
+import { getLvlReached, getPagination, getTopLevelsReached } from "./helpers";
 
-const getExerciseLogsByCategory = async ({
+const getPaginatedExerciseLogsByCategory = async ({
   queryKey,
 }: {
   queryKey: QueryKey;
 }) => {
-  const { data, error } = await supabase
+  const { from, to } = getPagination(queryKey[2] as number, 2);
+
+  const { data, count, error } = await supabase
     .from("workout_logs")
-    .select("id, created_at, reps, exercise!inner(id, category, name, step)")
+    .select("id, created_at, reps, exercise!inner(id, category, name, step)", {
+      count: "exact",
+    })
     .eq("exercise.category", queryKey[1])
-    .order("created_at", { ascending: false });
+    .order("created_at", { ascending: false })
+    .range(from, to);
 
   if (error) throw new Error(error.message);
 
-  return data;
+  return { count, data };
 };
 
 const getExerciseLogsPerDay = async () => {
@@ -63,8 +68,15 @@ const insertLog = async (exerciseLog: {
   return data;
 };
 
-const useFetchExericeLogs = (category: ExerciseCategory) =>
-  useQuery(["exercise-logs", category], getExerciseLogsByCategory);
+const useFetchPaginatedExerciseLogsByCategory = (
+  category: ExerciseCategory,
+  page: number,
+) =>
+  useQuery(
+    ["exercise-logs", category, page],
+    getPaginatedExerciseLogsByCategory,
+    { keepPreviousData: true, refetchOnWindowFocus: false },
+  );
 
 const useFetchProgressTable = () =>
   useQuery(["progress-table"], getProgressTable);
@@ -84,9 +96,9 @@ const useAddExerciseLog = () => {
 
 const exerciseApi = {
   useAddExerciseLog,
-  useFetchExericeLogs,
   useFetchExerciseLogsPerDay,
   useFetchProgressTable,
+  useFetchPaginatedExerciseLogsByCategory,
 };
 
 export default exerciseApi;

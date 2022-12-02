@@ -84,5 +84,12 @@ const getTopLevelsReached = (data: Array<Progress>) => {
   return topProgress;
 };
 
+const getPagination = (page: number, size: number) => {
+  const to = page * size - 1;
+  const from = to - (size - 1);
+
+  return { from, to };
+};
+
 // eslint-disable-next-line import/prefer-default-export
-export { getTopLevelsReached, getLvlReached };
+export { getTopLevelsReached, getLvlReached, getPagination };

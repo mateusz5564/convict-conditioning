@@ -1,5 +1,9 @@
+import { useState } from "react";
+
+import { Box, Pagination } from "@mui/material";
 import exerciseApi from "api/exercise";
 import LoadingSpinner from "components/CircularProgress/CircularProgress";
+import OverlayLoadingSpinner from "features/Auth/components/shared/OverlayLoadingSpinner";
 import { ExerciseRepsLineChart } from "features/Charts";
 import { ExerciseCategory } from "types";
 
@@ -10,12 +14,17 @@ import NoLogs from "./NoLogs";
 
 const ExerciseLogs = () => {
   const { workoutPart } = useWorkoutPartContext();
+  const [page, setPage] = useState(1);
   const {
     data: logs,
     error,
     isError,
     isLoading,
-  } = exerciseApi.useFetchExericeLogs(workoutPart.category as ExerciseCategory);
+    isFetching,
+  } = exerciseApi.useFetchPaginatedExerciseLogsByCategory(
+    workoutPart.category as ExerciseCategory,
+    page,
+  );
 
   if (isLoading) return <LoadingSpinner />;
 
@@ -30,20 +39,42 @@ const ExerciseLogs = () => {
 
   return (
     <div>
-      {logs && <ExerciseRepsLineChart workoutPartLogs={logs} />}
+      {logs && <ExerciseRepsLineChart workoutPartLogs={logs.data} />}
       <AddExerciseLog />
-      {logs?.length === 0 && <NoLogs />}
-      {logs?.map((log) => (
-        <ExerciseLog
-          key={log.id}
-          exerciseLog={{
-            created_at: log.created_at,
-            name: log.exercise.name,
-            step: log.exercise.step,
-            reps: log.reps,
-          }}
-        />
-      ))}
+
+      {!logs?.count && <NoLogs />}
+
+      {logs?.count && (
+        <>
+          <Box sx={{ position: "relative" }}>
+            {isFetching && <OverlayLoadingSpinner />}
+            {logs?.data.map((log) => (
+              <ExerciseLog
+                key={log.id}
+                exerciseLog={{
+                  created_at: log.created_at,
+                  name: log.exercise.name,
+                  step: log.exercise.step,
+                  reps: log.reps,
+                }}
+              />
+            ))}
+          </Box>
+          <Box
+            sx={{
+              textAlign: "center",
+            }}
+          >
+            <Pagination
+              sx={{ display: "inline-block", mb: 2, mt: 1 }}
+              count={Math.ceil(logs.count / 2)}
+              onChange={(e, value) => {
+                setPage(value);
+              }}
+            />
+          </Box>
+        </>
+      )}
     </div>
   );
 };
