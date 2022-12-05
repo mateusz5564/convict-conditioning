@@ -9,7 +9,7 @@ const WorkoutPart = () => {
   return (
     <>
       <ExercisesNavigation />
-      <Outlet context={{ workoutPart }} />
+      <Outlet key={workoutPart.category} context={{ workoutPart }} />
     </>
   );
 };

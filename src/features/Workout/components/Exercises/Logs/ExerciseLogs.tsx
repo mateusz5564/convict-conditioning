@@ -44,7 +44,7 @@ const ExerciseLogs = () => {
 
       {!logs?.count && <NoLogs />}
 
-      {logs?.count && (
+      {Boolean(logs?.count) && (
         <>
           <Box sx={{ position: "relative" }}>
             {isFetching && <OverlayLoadingSpinner />}
@@ -67,7 +67,7 @@ const ExerciseLogs = () => {
           >
             <Pagination
               sx={{ display: "inline-block", mb: 2, mt: 1 }}
-              count={Math.ceil(logs.count / 2)}
+              count={Math.ceil(Number(logs?.count) / 2)}
               onChange={(e, value) => {
                 setPage(value);
               }}
