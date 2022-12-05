@@ -39,7 +39,7 @@ const ExerciseLogs = () => {
 
   return (
     <div>
-      {logs && <ExerciseRepsLineChart workoutPartLogs={logs.data} />}
+      <ExerciseRepsLineChart category={workoutPart.category} />
       <AddExerciseLog />
 
       {!logs?.count && <NoLogs />}

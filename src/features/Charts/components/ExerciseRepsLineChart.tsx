@@ -1,20 +1,36 @@
 import InsightsIcon from "@mui/icons-material/Insights";
 import { Box, Paper, Typography } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
-import { ExerciseLog } from "types";
+import exerciseApi from "api/exercise";
+import LoadingSpinner from "components/CircularProgress/CircularProgress";
+import { ExerciseCategory, ExerciseLog } from "types";
 
 import { getChartData } from "../helpers";
 import useChartTheme from "../theme";
 
-const LineChart = ({
-  workoutPartLogs,
-}: {
-  workoutPartLogs: Array<ExerciseLog>;
-}) => {
+const LineChart = ({ category }: { category: ExerciseCategory }) => {
   const chartTheme = useChartTheme();
-  const chartData = getChartData(workoutPartLogs);
+  const {
+    data: latestExerciseLogs,
+    isLoading,
+    error,
+    isError,
+  } = exerciseApi.useFetchLatestExerciseLogsLastMonth(category);
 
-  if (!chartData.length || chartData[0].data.length < 2) {
+  if (isLoading) return <LoadingSpinner />;
+
+  if (isError && error instanceof Error) {
+    return (
+      <div>
+        Error!
+        {error.message}
+      </div>
+    );
+  }
+
+  const chartData = getChartData(latestExerciseLogs as ExerciseLog[]);
+
+  if (!chartData.length || chartData[0]?.data.length < 2) {
     return (
       <Paper
         elevation={2}
@@ -37,7 +53,7 @@ const LineChart = ({
         <ResponsiveLine
           theme={chartTheme}
           data={chartData}
-          margin={{ top: 20, right: 20, bottom: 30, left: 30 }}
+          margin={{ top: 20, right: 20, bottom: 30, left: 32 }}
           xScale={{
             type: "time",
             format: "%Y-%m-%d",

@@ -34,6 +34,20 @@ const getExerciseLogsPerDay = async () => {
   return data;
 };
 
+const getLatestExerciseLogsLastMonth = async ({
+  queryKey,
+}: {
+  queryKey: QueryKey;
+}) => {
+  const { data, error } = await supabase.rpc("get_logs_last_month", {
+    log_category: queryKey[1],
+  });
+
+  if (error) throw new Error(error.message);
+
+  return data;
+};
+
 const getProgressTable = async () => {
   const { data, error } = await supabase.rpc("progress_table");
 
@@ -84,6 +98,12 @@ const useFetchProgressTable = () =>
 const useFetchExerciseLogsPerDay = () =>
   useQuery(["exercise-logs"], getExerciseLogsPerDay);
 
+const useFetchLatestExerciseLogsLastMonth = (category: ExerciseCategory) =>
+  useQuery(
+    ["exercise-logs-last-month", category],
+    getLatestExerciseLogsLastMonth,
+  );
+
 const useAddExerciseLog = () => {
   const queryClient = useQueryClient();
 
@@ -97,6 +117,7 @@ const useAddExerciseLog = () => {
 const exerciseApi = {
   useAddExerciseLog,
   useFetchExerciseLogsPerDay,
+  useFetchLatestExerciseLogsLastMonth,
   useFetchProgressTable,
   useFetchPaginatedExerciseLogsByCategory,
 };
