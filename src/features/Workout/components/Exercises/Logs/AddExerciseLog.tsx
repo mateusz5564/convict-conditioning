@@ -3,6 +3,7 @@ import { SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 
 import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
 import { Button, MenuItem, Paper, Stack } from "@mui/material";
 import exerciseApi from "api/exercise";
 import workoutPartApi from "api/workoutPart";
@@ -35,7 +36,11 @@ const AddExerciseLog = () => {
     handleSubmit,
     reset,
   } = useForm<Inputs>({ defaultValues: defaultFormValues });
-  const { fields: reps, append: appendRep } = useFieldArray({
+  const {
+    fields: reps,
+    append: appendRep,
+    remove: removeRep,
+  } = useFieldArray({
     name: "reps",
     control,
   });
@@ -48,6 +53,11 @@ const AddExerciseLog = () => {
 
   const onAddSet = () => {
     appendRep({ value: 0 });
+  };
+
+  const onRemoveSet = () => {
+    if (reps.length <= 1) return;
+    removeRep(reps.length - 1);
   };
 
   const onSubmitExerciseLog: SubmitHandler<Inputs> = (data) => {
@@ -105,15 +115,25 @@ const AddExerciseLog = () => {
             sx={{ maxWidth: "4.125rem", mr: "0.5rem", mb: "0.5rem" }}
           />
         ))}
-
         <Button
           onClick={onAddSet}
           variant="outlined"
           startIcon={<AddIcon />}
-          sx={{ mb: "0.5rem" }}
+          sx={{ mb: "0.5rem", mr: "0.5rem" }}
         >
           Set
         </Button>
+        {reps.length > 1 && (
+          <Button
+            onClick={onRemoveSet}
+            color="error"
+            variant="outlined"
+            startIcon={<RemoveIcon />}
+            sx={{ mb: "0.5rem" }}
+          >
+            Set
+          </Button>
+        )}
       </Stack>
 
       <Stack flexDirection="row" justifyContent="flex-end">
