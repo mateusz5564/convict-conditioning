@@ -52,6 +52,7 @@ const ExerciseLogs = () => {
               <ExerciseLog
                 key={log.id}
                 exerciseLog={{
+                  id: log.id,
                   created_at: log.created_at,
                   name: log.exercise.name,
                   step: log.exercise.step,

@@ -82,6 +82,17 @@ const insertLog = async (exerciseLog: {
   return data;
 };
 
+const deleteLog = async (id: string) => {
+  const { data, error } = await supabase
+    .from("workout_logs")
+    .delete()
+    .eq("id", id);
+
+  if (error) throw new Error(error.message);
+
+  return data;
+};
+
 const useFetchPaginatedExerciseLogsByCategory = (
   category: ExerciseCategory,
   page: number,
@@ -114,8 +125,19 @@ const useAddExerciseLog = () => {
   });
 };
 
+const useDeleteExerciseLog = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(deleteLog, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("exercise-logs");
+    },
+  });
+};
+
 const exerciseApi = {
   useAddExerciseLog,
+  useDeleteExerciseLog,
   useFetchExerciseLogsPerDay,
   useFetchLatestExerciseLogsLastMonth,
   useFetchProgressTable,
