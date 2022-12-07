@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import DeleteIcon from "@mui/icons-material/Delete";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { IconButton } from "@mui/material";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
@@ -27,12 +27,8 @@ const DeleteButton = ({ description, handleDelete }: Props) => {
 
   return (
     <div>
-      <IconButton
-        color="error"
-        onClick={handleClickOpen}
-        aria-label="delete exercise log"
-      >
-        <DeleteIcon />
+      <IconButton onClick={handleClickOpen} aria-label="delete exercise log">
+        <DeleteOutlineIcon />
       </IconButton>
       <Dialog
         maxWidth="xs"
