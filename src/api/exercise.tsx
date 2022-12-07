@@ -1,4 +1,10 @@
-import { QueryKey, useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  MutationFunction,
+  QueryKey,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 
 import supabase from "supabase/supabaseClient";
 import { Exercise, ExerciseCategory } from "types";
@@ -115,25 +121,23 @@ const useFetchLatestExerciseLogsLastMonth = (category: ExerciseCategory) =>
     getLatestExerciseLogsLastMonth,
   );
 
-const useAddExerciseLog = () => {
+const createExerciseLogMutation = (mutationFn: MutationFunction) => () => {
   const queryClient = useQueryClient();
 
-  return useMutation(insertLog, {
+  return useMutation(mutationFn, {
     onSuccess: () => {
       queryClient.invalidateQueries("exercise-logs");
+      queryClient.invalidateQueries("exercise-logs-last-month");
     },
   });
 };
 
-const useDeleteExerciseLog = () => {
-  const queryClient = useQueryClient();
-
-  return useMutation(deleteLog, {
-    onSuccess: () => {
-      queryClient.invalidateQueries("exercise-logs");
-    },
-  });
-};
+const useAddExerciseLog = createExerciseLogMutation(
+  insertLog as MutationFunction,
+);
+const useDeleteExerciseLog = createExerciseLogMutation(
+  deleteLog as MutationFunction,
+);
 
 const exerciseApi = {
   useAddExerciseLog,
