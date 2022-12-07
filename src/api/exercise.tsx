@@ -16,7 +16,7 @@ const getPaginatedExerciseLogsByCategory = async ({
 }: {
   queryKey: QueryKey;
 }) => {
-  const { from, to } = getPagination(queryKey[2] as number, 2);
+  const { from, to } = getPagination(queryKey[2] as number, 20);
 
   const { data, count, error } = await supabase
     .from("workout_logs")

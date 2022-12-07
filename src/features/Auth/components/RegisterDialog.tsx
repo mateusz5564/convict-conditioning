@@ -66,7 +66,7 @@ const RegisterDialog = () => {
 
         <AuthDivider>or</AuthDivider>
 
-        <Typography>Sign up with google</Typography>
+        <Typography>Sign up with google (To Do)</Typography>
 
         <Typography sx={{ "& a": { color: "primary.main", ml: 1 } }}>
           Already have an account?{" "}

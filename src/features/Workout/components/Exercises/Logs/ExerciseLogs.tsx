@@ -68,7 +68,7 @@ const ExerciseLogs = () => {
           >
             <Pagination
               sx={{ display: "inline-block", mb: 2, mt: 1 }}
-              count={Math.ceil(Number(logs?.count) / 2)}
+              count={Math.ceil(Number(logs?.count) / 20)}
               onChange={(e, value) => {
                 setPage(value);
               }}

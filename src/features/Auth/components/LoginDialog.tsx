@@ -54,7 +54,7 @@ const LoginDialog = () => {
           />
 
           <Typography variant="caption" display="block" textAlign="right">
-            Forgot Password?
+            Forgot Password? (To Do)
           </Typography>
 
           {isError && error instanceof Error && (
@@ -64,7 +64,7 @@ const LoginDialog = () => {
         </Form>
 
         <AuthDivider>or</AuthDivider>
-        <Typography>Sign in with google</Typography>
+        <Typography>Sign in with google (To Do)</Typography>
         <Typography sx={{ "& a": { color: "primary.main", ml: 1 } }}>
           Don't have an account?
           <Link

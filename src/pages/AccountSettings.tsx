@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 
 const AccountSettings = () => {
-  return <Typography>Account Settings (TO IMPLEMENT)</Typography>;
+  return <Typography>Account Settings (To Do)</Typography>;
 };
 
 export default AccountSettings;
