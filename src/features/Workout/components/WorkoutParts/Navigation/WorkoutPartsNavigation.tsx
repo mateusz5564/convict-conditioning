@@ -37,7 +37,6 @@ const WorkoutPartsNavigation = ({ workoutParts, workoutPart }: Props) => {
           setValue(newValue);
         }}
         variant="scrollable"
-        allowScrollButtonsMobile
         aria-label="Workout parts navigation"
       >
         {workoutParts?.map((workoutPart) => (
