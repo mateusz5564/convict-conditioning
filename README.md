@@ -14,7 +14,6 @@ So this app is created to allow us to track and visualize our workout progress.
 - React Query
 - React Hook Form
 - React Router
-- React Material
 - Material UI
 - Nivo
 - ESLint
