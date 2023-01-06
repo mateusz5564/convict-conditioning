@@ -10,6 +10,7 @@ import { AuthContextProvider } from "features/Auth";
 import theme from "theme";
 
 import App from "./App";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -32,3 +33,5 @@ root.render(
     </BrowserRouter>
   </React.StrictMode>,
 );
+
+serviceWorkerRegistration.register();
