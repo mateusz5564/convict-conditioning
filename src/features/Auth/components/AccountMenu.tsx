@@ -77,7 +77,7 @@ const AccountMenu = () => {
                 },
               }}
             >
-              <Link to="account/settings">
+              <Link to="account">
                 <ListItemIcon>
                   <Settings fontSize="small" />
                 </ListItemIcon>

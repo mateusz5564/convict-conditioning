@@ -1,6 +1,15 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  components: {
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          justifyContent: "flex-start",
+        },
+      },
+    },
+  },
   palette: {
     mode: "dark",
     primary: {

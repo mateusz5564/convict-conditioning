@@ -2,6 +2,9 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { Container } from "@mui/material";
 import NoUser from "components/NoUser/NoUser";
+import ChangeEmail from "features/Account/components/ChangeEmail";
+import ChangePassword from "features/Account/components/ChangePassword";
+import DeleteAccount from "features/Account/components/DeleteAccount";
 import {
   AccountMenu,
   LoginDialog,
@@ -52,7 +55,12 @@ const App = () => {
             <Route path="instructions" element={<ExerciseInstructions />} />
           </Route>
         </Route>
-        <Route path="account/settings" element={<AccountSettings />} />
+        <Route path="account" element={<AccountSettings />}>
+          <Route index element={<Navigate to="change-password" />} />
+          <Route path="change-password" element={<ChangePassword />} />
+          <Route path="change-email" element={<ChangeEmail />} />
+          <Route path="delete-account" element={<DeleteAccount />} />
+        </Route>
         <Route path="/login" element={<Overview />} />
         <Route path="/register" element={<Overview />} />
         <Route path="*" element={<div>Page not found</div>} />
