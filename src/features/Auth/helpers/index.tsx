@@ -1,6 +1,9 @@
-import { TInputs } from "../types";
+import { TInputsAuthentication } from "../types";
 
-export const defaultFormValues: TInputs = { email: "", password: "" };
+export const defaultFormValues: TInputsAuthentication = {
+  email: "",
+  password: "",
+};
 
 export const inputRules = {
   email: {
@@ -15,4 +18,15 @@ export const inputRules = {
     required: { value: true, message: "Password is required" },
     minLength: { value: 8, message: "Password must be min 8 characters long" },
   },
+};
+
+export const getTabIndex = (pathname: string) => {
+  switch (pathname) {
+    case "/account/change-password":
+      return 0;
+    case "/account/change-email":
+      return 1;
+    default:
+      return 0;
+  }
 };

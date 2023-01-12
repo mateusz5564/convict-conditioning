@@ -2,7 +2,7 @@ import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { Stack, Typography } from "@mui/material";
 import Paper from "@mui/material/Paper";
 import exerciseApi from "api/exercise";
-import DeleteButton from "components/DeleteButton/DeleteButton";
+import DeleteButton from "components/Buttons/DeleteButton";
 import { getDayAndMonth } from "utils/date";
 
 interface Props {

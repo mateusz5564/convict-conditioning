@@ -2,9 +2,6 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { Container } from "@mui/material";
 import NoUser from "components/NoUser/NoUser";
-import ChangeEmail from "features/Account/components/ChangeEmail";
-import ChangePassword from "features/Account/components/ChangePassword";
-import DeleteAccount from "features/Account/components/DeleteAccount";
 import {
   AccountMenu,
   LoginDialog,
@@ -12,12 +9,15 @@ import {
   useAuthContext,
   useBackgroundLocation,
 } from "features/Auth";
+import ChangeEmail from "features/Auth/components/ChangeEmail";
+import ChangePassword from "features/Auth/components/ChangePassword";
 import BottomNav from "features/BottomNav";
 import {
   ExerciseInstructions,
   ExerciseLogs,
   WorkoutPart,
 } from "features/Workout";
+import NewPassword from "pages/NewPassword";
 
 import AccountSettings from "./pages/AccountSettings";
 import Overview from "./pages/Overview";
@@ -55,12 +55,15 @@ const App = () => {
             <Route path="instructions" element={<ExerciseInstructions />} />
           </Route>
         </Route>
-        <Route path="account" element={<AccountSettings />}>
+        <Route
+          path="account"
+          element={user ? <AccountSettings /> : <Navigate to="/" />}
+        >
           <Route index element={<Navigate to="change-password" />} />
           <Route path="change-password" element={<ChangePassword />} />
           <Route path="change-email" element={<ChangeEmail />} />
-          <Route path="delete-account" element={<DeleteAccount />} />
         </Route>
+        <Route path="/recover" element={<NewPassword />} />
         <Route path="/login" element={<Overview />} />
         <Route path="/register" element={<Overview />} />
         <Route path="*" element={<div>Page not found</div>} />

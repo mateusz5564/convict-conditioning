@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import { useQueryClient } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 import { User } from "@supabase/supabase-js";
 import supabase from "supabase/supabaseClient";
@@ -13,6 +14,7 @@ export const AuthContextProvider = ({
 }) => {
   const [user, setUser] = useState<User | null | undefined>(null);
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const session = supabase.auth.session();
@@ -22,6 +24,9 @@ export const AuthContextProvider = ({
       (event, changedSession) => {
         setUser(changedSession?.user);
         queryClient.invalidateQueries();
+        if (event === "PASSWORD_RECOVERY") {
+          navigate("/recover");
+        }
       },
     );
 

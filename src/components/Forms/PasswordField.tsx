@@ -1,11 +1,5 @@
 import { useState } from "react";
-import {
-  Control,
-  Controller,
-  FieldPath,
-  FieldValues,
-  RegisterOptions,
-} from "react-hook-form";
+import { Control, Controller, FieldPath, FieldValues } from "react-hook-form";
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -15,20 +9,18 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import InputLabel from "@mui/material/InputLabel";
 import OutlinedInput, { OutlinedInputProps } from "@mui/material/OutlinedInput";
+import { inputRules } from "features/Auth/helpers";
 
 type Props<TFieldValues extends FieldValues> = OutlinedInputProps & {
   name: FieldPath<TFieldValues>;
+  label: string;
   control: Control<TFieldValues>;
-  rules: Exclude<
-    RegisterOptions,
-    "valueAsNumber" | "valueAsDate" | "setValueAs"
-  >;
 };
 
 const PasswordField = <TFieldValues extends {}>({
   name,
+  label,
   control,
-  rules,
   sx,
   ...rest
 }: Props<TFieldValues>) => {
@@ -42,7 +34,7 @@ const PasswordField = <TFieldValues extends {}>({
     <Controller
       name={name}
       control={control}
-      rules={rules}
+      rules={inputRules.password}
       render={({ field, fieldState: { error } }) => (
         <FormControl
           variant="outlined"
@@ -50,13 +42,13 @@ const PasswordField = <TFieldValues extends {}>({
           error={error !== undefined}
           fullWidth={rest.fullWidth}
         >
-          <InputLabel htmlFor={name}>Password</InputLabel>
+          <InputLabel htmlFor={name}>{label}</InputLabel>
           <OutlinedInput
             {...field}
             {...rest}
             id={name}
             type={showPassword ? "text" : "password"}
-            label="Password"
+            label={label}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton

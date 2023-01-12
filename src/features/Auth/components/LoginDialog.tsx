@@ -1,8 +1,9 @@
 import { useRef } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 import { Container, Typography } from "@mui/material";
+import SubmitButton from "components/Buttons/SubmitButton";
 import PasswordField from "components/Forms/PasswordField";
 import TextField from "components/Forms/TextField";
 
@@ -10,25 +11,24 @@ import { defaultFormValues, inputRules } from "../helpers";
 import useBackgroundLocation from "../hooks/useBackgroundLocation";
 import useLogin from "../hooks/useLogin";
 import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
-import { TInputs } from "../types";
+import { TInputsAuthentication } from "../types";
 import AuthDivider from "./shared/AuthDivider";
 import AuthDialog from "./shared/Dialog";
 import ErrorAlert from "./shared/ErrorAlert";
 import Form from "./shared/Form";
-import SubmitButton from "./shared/SubmitButton";
 import Title from "./shared/Title";
 
 const LoginDialog = () => {
   const backgroundLocation = useBackgroundLocation();
   const { mutate: login, error, isError, isLoading, isSuccess } = useLogin();
-  const { control, handleSubmit } = useForm<TInputs>({
+  const { control, handleSubmit } = useForm<TInputsAuthentication>({
     defaultValues: defaultFormValues,
   });
   useNavigateOnSuccess(isSuccess, backgroundLocation);
 
   const backgroundLocationRef = useRef(backgroundLocation);
 
-  const onLogin = (data: TInputs) => {
+  const onLogin: SubmitHandler<TInputsAuthentication> = (data) => {
     login(data);
   };
 
@@ -47,9 +47,8 @@ const LoginDialog = () => {
 
           <PasswordField
             name="password"
-            control={control}
-            rules={inputRules.password}
             label="Password"
+            control={control}
             fullWidth
           />
 
@@ -60,7 +59,9 @@ const LoginDialog = () => {
           {isError && error instanceof Error && (
             <ErrorAlert>{error.message}</ErrorAlert>
           )}
-          <SubmitButton loading={isLoading}>Sign In</SubmitButton>
+          <SubmitButton loading={isLoading} sx={{ mt: 2 }}>
+            Sign In
+          </SubmitButton>
         </Form>
 
         <AuthDivider>or</AuthDivider>

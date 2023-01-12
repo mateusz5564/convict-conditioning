@@ -1,16 +1,16 @@
 import { LoadingButton } from "@mui/lab";
 
-import { SubmitButtonProps } from "../../types";
+import { SubmitButtonProps } from "../../features/Auth/types";
 
-const SubmitButton = ({ children, loading }: SubmitButtonProps) => {
+const SubmitButton = ({ children, loading, sx }: SubmitButtonProps) => {
   return (
     <LoadingButton
       type="submit"
       variant="contained"
       fullWidth
-      sx={{ mt: 2 }}
       loading={loading}
       loadingIndicator="Loading..."
+      sx={sx}
     >
       {children}
     </LoadingButton>
