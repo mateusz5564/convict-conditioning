@@ -12,6 +12,7 @@ import useBackgroundLocation from "../hooks/useBackgroundLocation";
 import useLogin from "../hooks/useLogin";
 import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
 import { TInputsAuthentication } from "../types";
+import ResetPasswordDialog from "./ResetPasswordDialog";
 import AuthDivider from "./shared/AuthDivider";
 import AuthDialog from "./shared/Dialog";
 import ErrorAlert from "./shared/ErrorAlert";
@@ -52,17 +53,15 @@ const LoginDialog = () => {
             fullWidth
           />
 
-          <Typography variant="caption" display="block" textAlign="right">
-            Forgot Password? (To Do)
-          </Typography>
-
           {isError && error instanceof Error && (
             <ErrorAlert>{error.message}</ErrorAlert>
           )}
-          <SubmitButton loading={isLoading} sx={{ mt: 2 }}>
+          <SubmitButton loading={isLoading} sx={{ my: 1 }}>
             Sign In
           </SubmitButton>
         </Form>
+
+        <ResetPasswordDialog />
 
         <AuthDivider>or</AuthDivider>
         <Typography>Sign in with google (To Do)</Typography>
