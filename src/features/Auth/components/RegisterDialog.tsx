@@ -12,6 +12,7 @@ import useBackgroundLocation from "../hooks/useBackgroundLocation";
 import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
 import useRegister from "../hooks/useRegister";
 import { TInputsAuthentication } from "../types";
+import SignInWithGoogle from "./SignInWIthGoogle";
 import AuthDivider from "./shared/AuthDivider";
 import AuthDialog from "./shared/Dialog";
 import ErrorAlert from "./shared/ErrorAlert";
@@ -40,7 +41,7 @@ const RegisterDialog = () => {
 
   return (
     <AuthDialog>
-      <Container sx={{ pb: 2 }}>
+      <Container sx={{ pb: 2, textAlign: "center" }}>
         <Title>Create your account</Title>
         <Form handleSubmit={handleSubmit} submitHandler={onRegister}>
           <TextField
@@ -68,9 +69,16 @@ const RegisterDialog = () => {
 
         <AuthDivider>or</AuthDivider>
 
-        <Typography>Sign up with google (To Do)</Typography>
+        <SignInWithGoogle />
 
-        <Typography sx={{ "& a": { color: "primary.main", ml: 1 } }}>
+        <Typography
+          variant="body2"
+          sx={{
+            "& a": { color: "primary.main", ml: 1 },
+            mt: 4,
+            display: "block",
+          }}
+        >
           Already have an account?{" "}
           <Link
             to="/login"

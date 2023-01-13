@@ -13,6 +13,7 @@ import useLogin from "../hooks/useLogin";
 import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
 import { TInputsAuthentication } from "../types";
 import ResetPasswordDialog from "./ResetPasswordDialog";
+import SignInWithGoogle from "./SignInWIthGoogle";
 import AuthDivider from "./shared/AuthDivider";
 import AuthDialog from "./shared/Dialog";
 import ErrorAlert from "./shared/ErrorAlert";
@@ -35,7 +36,7 @@ const LoginDialog = () => {
 
   return (
     <AuthDialog>
-      <Container sx={{ pb: 2 }}>
+      <Container sx={{ pb: 2, textAlign: "center" }}>
         <Title>Log in to your account</Title>
         <Form handleSubmit={handleSubmit} submitHandler={onLogin}>
           <TextField
@@ -64,8 +65,17 @@ const LoginDialog = () => {
         <ResetPasswordDialog />
 
         <AuthDivider>or</AuthDivider>
-        <Typography>Sign in with google (To Do)</Typography>
-        <Typography sx={{ "& a": { color: "primary.main", ml: 1 } }}>
+
+        <SignInWithGoogle />
+
+        <Typography
+          variant="body2"
+          sx={{
+            "& a": { color: "primary.main", ml: 1 },
+            mt: 4,
+            display: "block",
+          }}
+        >
           Don't have an account?
           <Link
             to="/register"
