@@ -20,7 +20,7 @@ export const inputRules = {
   },
 };
 
-export const getTabIndex = (pathname: string) => {
+export const getAccountSettingsTabIndex = (pathname: string) => {
   switch (pathname) {
     case "/account/change-password":
       return 0;

@@ -7,14 +7,15 @@ import { useMediaQuery } from "@mui/material";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import Tabs from "@mui/material/Tabs";
-import { getTabIndex } from "features/Auth/helpers";
+import { getAccountSettingsTabIndex } from "features/Auth/helpers";
 
 const AccountSettings = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const tabIndex = getTabIndex(location.pathname);
-  const [value, setValue] = useState(tabIndex);
   const matches = useMediaQuery("(min-width: 700px)");
+
+  const tabIndex = getAccountSettingsTabIndex(location.pathname);
+  const [value, setValue] = useState(tabIndex);
 
   const handleChange = (event: SyntheticEvent, newValue: number) => {
     setValue(newValue);
