@@ -1,8 +1,19 @@
+import { PropsWithChildren } from "react";
+
 import { LoadingButton } from "@mui/lab";
+import { SxProps } from "@mui/material";
 
-import { SubmitButtonProps } from "../../features/Auth/types";
+type SubmitButtonProps = {
+  loading: boolean;
+  // eslint-disable-next-line react/require-default-props
+  sx?: SxProps;
+};
 
-const SubmitButton = ({ children, loading, sx }: SubmitButtonProps) => {
+const SubmitButton = ({
+  children,
+  loading,
+  sx,
+}: PropsWithChildren<SubmitButtonProps>) => {
   return (
     <LoadingButton
       type="submit"

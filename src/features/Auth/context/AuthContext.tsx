@@ -4,14 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import { User } from "@supabase/supabase-js";
 import supabase from "supabase/supabaseClient";
+import { ChildrenProp } from "types";
 
 export const AuthContext = createContext<User | null | undefined>(null);
 
-export const AuthContextProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+export const AuthContextProvider = ({ children }: ChildrenProp) => {
   const [user, setUser] = useState<User | null | undefined>(null);
   const queryClient = useQueryClient();
   const navigate = useNavigate();

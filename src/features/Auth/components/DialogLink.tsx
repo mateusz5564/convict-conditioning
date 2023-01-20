@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { Link, Location } from "react-router-dom";
 
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -11,7 +10,7 @@ type Props = {
   replace?: boolean;
 };
 
-const DialogLink: FC<Props> = ({
+const DialogLink = ({
   to,
   backgroundLocation,
   children,

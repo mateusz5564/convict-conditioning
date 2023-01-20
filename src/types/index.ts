@@ -43,3 +43,7 @@ export interface WorkoutPart {
   category: ExerciseCategory;
   exercises: Exercise[];
 }
+
+export type ChildrenProp = {
+  children: React.ReactNode;
+};

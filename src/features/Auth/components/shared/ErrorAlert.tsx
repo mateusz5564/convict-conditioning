@@ -1,6 +1,5 @@
 import { Alert } from "@mui/material";
-
-import { ChildrenProp } from "../../types";
+import { ChildrenProp } from "types";
 
 const ErrorAlert = ({ children }: ChildrenProp) => {
   return (

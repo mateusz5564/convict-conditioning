@@ -3,11 +3,11 @@ import { ReactEventHandler } from "react";
 import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const SignInWithGoogleButton = ({
-  onClick,
-}: {
+type Props = {
   onClick: ReactEventHandler;
-}) => {
+};
+
+const SignInWithGoogleButton = ({ onClick }: Props) => {
   const CustomButton = styled(Button)({
     boxShadow: "none",
     textTransform: "none",

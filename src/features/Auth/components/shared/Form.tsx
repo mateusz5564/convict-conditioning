@@ -1,3 +1,5 @@
+import { PropsWithChildren } from "react";
+
 import { Box } from "@mui/material";
 
 import { FormProps } from "../../types";
@@ -6,7 +8,7 @@ const Form = <TFieldValues extends {}>({
   children,
   handleSubmit,
   submitHandler,
-}: FormProps<TFieldValues>) => {
+}: PropsWithChildren<FormProps<TFieldValues>>) => {
   return (
     <Box
       component="form"

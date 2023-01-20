@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
-
-import { ChildrenProp } from "../../types";
+import { ChildrenProp } from "types";
 
 const Title = ({ children }: ChildrenProp) => {
   return (

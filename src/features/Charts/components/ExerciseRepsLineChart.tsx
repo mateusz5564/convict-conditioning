@@ -8,7 +8,9 @@ import { ExerciseCategory, ExerciseLog } from "types";
 import { getChartData } from "../helpers";
 import useChartTheme from "../theme";
 
-const LineChart = ({ category }: { category: ExerciseCategory }) => {
+type Props = { category: ExerciseCategory };
+
+const LineChart = ({ category }: Props) => {
   const chartTheme = useChartTheme();
   const {
     data: latestExerciseLogs,

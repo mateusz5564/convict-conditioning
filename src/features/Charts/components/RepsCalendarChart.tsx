@@ -7,11 +7,11 @@ import { getDaysBefore } from "utils/date";
 
 import useChartTheme from "../theme";
 
-const RepsCalendarChart = ({
-  exerciseLogs,
-}: {
+type Props = {
   exerciseLogs: Array<ExerciseLogsPerDay>;
-}) => {
+};
+
+const RepsCalendarChart = ({ exerciseLogs }: Props) => {
   const theme = useTheme();
   const chartTheme = useChartTheme();
   const oneYearEarlier = getDaysBefore(365);
