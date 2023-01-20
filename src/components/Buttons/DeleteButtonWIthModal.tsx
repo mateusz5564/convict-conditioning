@@ -14,7 +14,7 @@ type Props = {
   handleDelete: React.MouseEventHandler<HTMLButtonElement>;
 };
 
-const DeleteButton = ({ description, handleDelete }: Props) => {
+const DeleteButtonWithModal = ({ description, handleDelete }: Props) => {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -61,4 +61,4 @@ const DeleteButton = ({ description, handleDelete }: Props) => {
   );
 };
 
-export default DeleteButton;
+export default DeleteButtonWithModal;
