@@ -9,7 +9,7 @@ import { ReactComponent as LegRaisesSvg } from "assets/icons/leg-raises.svg";
 import { ReactComponent as PullUpsSvg } from "assets/icons/pullups.svg";
 import { ReactComponent as PushUpsSvg } from "assets/icons/pushups.svg";
 import { ReactComponent as SquatsSvg } from "assets/icons/squats.svg";
-import { ExerciseCategory, WorkoutPart } from "types";
+import { WorkoutPart } from "types";
 
 type Props = {
   workoutParts: WorkoutPart[];
@@ -44,10 +44,7 @@ const WorkoutPartsNavigation = ({ workoutParts, workoutPart }: Props) => {
             key={workoutPart.category}
             value={workoutPart.category}
             icon={
-              <SvgIcon
-                component={icons[workoutPart.category as ExerciseCategory]}
-                inheritViewBox
-              />
+              <SvgIcon component={icons[workoutPart.category]} inheritViewBox />
             }
             label={workoutPart.category}
             onClick={() => navigate(`${workoutPart.category}/logs`)}
