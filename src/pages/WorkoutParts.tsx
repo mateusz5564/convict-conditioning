@@ -22,10 +22,10 @@ const WorkoutParts = () => {
 
   const workoutPart =
     workoutParts?.find((workout) => workout.category === category) ||
-    "not-found";
+    "category-not-found";
 
-  if (workoutPart === "not-found") {
-    return <div>Page not found</div>;
+  if (workoutPart === "category-not-found") {
+    return <div>Category "{category}" not found</div>;
   }
 
   return (
