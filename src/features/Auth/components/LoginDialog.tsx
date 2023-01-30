@@ -13,7 +13,7 @@ import useLogin from "../hooks/useLogin";
 import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
 import { TInputsAuthentication } from "../types";
 import ResetPasswordDialog from "./ResetPasswordDialog";
-import SignInWithGoogle from "./SignInWIthGoogle";
+import SignInWithGoogle from "./SignInWithGoogle";
 import AuthDivider from "./shared/AuthDivider";
 import AuthDialog from "./shared/Dialog";
 import ErrorAlert from "./shared/ErrorAlert";

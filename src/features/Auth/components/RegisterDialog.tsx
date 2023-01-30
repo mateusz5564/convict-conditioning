@@ -12,7 +12,7 @@ import useBackgroundLocation from "../hooks/useBackgroundLocation";
 import useNavigateOnSuccess from "../hooks/useNavigateOnSuccess";
 import useRegister from "../hooks/useRegister";
 import { TInputsAuthentication } from "../types";
-import SignInWithGoogle from "./SignInWIthGoogle";
+import SignInWithGoogle from "./SignInWithGoogle";
 import AuthDivider from "./shared/AuthDivider";
 import AuthDialog from "./shared/Dialog";
 import ErrorAlert from "./shared/ErrorAlert";
