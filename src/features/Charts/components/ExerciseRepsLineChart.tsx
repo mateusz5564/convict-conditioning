@@ -3,7 +3,7 @@ import { Box, Paper, Typography } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import exerciseApi from "api/exercise";
 import LoadingSpinner from "components/CircularProgress/CircularProgress";
-import { ExerciseCategory, ExerciseLog } from "types";
+import { ExerciseCategory } from "types";
 
 import { getChartData } from "../helpers";
 import useChartTheme from "../theme";
@@ -30,7 +30,7 @@ const LineChart = ({ category }: Props) => {
     );
   }
 
-  const chartData = getChartData(latestExerciseLogs as ExerciseLog[]);
+  const chartData = getChartData(latestExerciseLogs);
 
   if (!chartData.length || chartData[0]?.data.length < 2) {
     return (

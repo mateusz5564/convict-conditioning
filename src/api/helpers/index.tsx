@@ -1,5 +1,7 @@
 /* All this level related logic should be done using SQL functions, but it requires more advanced SQL skills,
 unfortunatelly mine are only basic. In the future I'm gonna learn more advanced SQL, for now I want to focus on frontend */
+import { ExerciseProgress, TopExerciseProgress } from "types";
+
 // calculate lvl reached in exercise from table of reps
 type Levels = Array<{ sets: number; reps: number }>;
 
@@ -39,17 +41,10 @@ const getLvlReached = (reps: number[], levels: string[]) => {
 };
 
 // calculate max lvl reached in each category
-type Progress = {
-  exercise_category: string;
-  exercise_step: number;
-  exercise_lvl_reached: number;
-};
 
-type GroupedProgress = { [key: string]: Array<Progress> };
+type GroupedProgress = { [key: string]: Array<ExerciseProgress> };
 
-type TopProgress = { [key: string]: Progress };
-
-const groupProgressByCategory = (data: Array<Progress>) => {
+const groupProgressByCategory = (data: Array<ExerciseProgress>) => {
   const newData: GroupedProgress = {};
 
   data.forEach((log) => {
@@ -63,7 +58,7 @@ const groupProgressByCategory = (data: Array<Progress>) => {
   return newData;
 };
 
-const getTopLevelsReached = (data: Array<Progress>) => {
+const getTopLevelsReached = (data: Array<ExerciseProgress>) => {
   const groupedProgress = groupProgressByCategory(data);
   const groupedSortedProgress: GroupedProgress = JSON.parse(
     JSON.stringify(groupedProgress),
@@ -75,7 +70,7 @@ const getTopLevelsReached = (data: Array<Progress>) => {
       .sort((a, b) => b.exercise_step - a.exercise_step);
   });
 
-  const topProgress: TopProgress = {};
+  const topProgress: TopExerciseProgress = {};
   Object.entries(groupedSortedProgress).forEach(([key, value]) => {
     const [top] = value;
     topProgress[key] = top;

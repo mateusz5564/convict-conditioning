@@ -1,29 +1,38 @@
 import {
   MutationFunction,
-  QueryKey,
   useMutation,
   useQuery,
   useQueryClient,
 } from "react-query";
 
 import supabase from "supabase/supabaseClient";
-import { Exercise, ExerciseCategory } from "types";
+import {
+  Exercise,
+  ExerciseCategory,
+  ExerciseLog,
+  ExerciseLogPerDay,
+  LatestExerciseLogLastMonth,
+  TopExerciseProgress,
+} from "types";
 
 import { getLvlReached, getPagination, getTopLevelsReached } from "./helpers";
 
-const getPaginatedExerciseLogsByCategory = async ({
-  queryKey,
-}: {
-  queryKey: QueryKey;
-}) => {
-  const { from, to } = getPagination(queryKey[2] as number, 20);
+const getPaginatedExerciseLogsByCategory = async (
+  category: ExerciseCategory,
+  page: number,
+  size: number,
+) => {
+  const { from, to } = getPagination(page, size);
 
   const { data, count, error } = await supabase
     .from("workout_logs")
-    .select("id, created_at, reps, exercise!inner(id, category, name, step)", {
-      count: "exact",
-    })
-    .eq("exercise.category", queryKey[1])
+    .select<string, ExerciseLog>(
+      "id, created_at, reps, exercise!inner(id, category, name, step)",
+      {
+        count: "exact",
+      },
+    )
+    .eq("exercise.category", category)
     .order("created_at", { ascending: false })
     .range(from, to);
 
@@ -32,7 +41,7 @@ const getPaginatedExerciseLogsByCategory = async ({
   return { count, data };
 };
 
-const getExerciseLogsPerDay = async () => {
+const getExerciseLogsPerDay = async (): Promise<ExerciseLogPerDay[]> => {
   const { data, error } = await supabase.rpc("exercises_per_day");
 
   if (error) throw new Error(error.message);
@@ -40,13 +49,11 @@ const getExerciseLogsPerDay = async () => {
   return data;
 };
 
-const getLatestExerciseLogsLastMonth = async ({
-  queryKey,
-}: {
-  queryKey: QueryKey;
-}) => {
+const getLatestExerciseLogsLastMonth = async (
+  category: ExerciseCategory,
+): Promise<LatestExerciseLogLastMonth[]> => {
   const { data, error } = await supabase.rpc("get_logs_last_month", {
-    log_category: queryKey[1],
+    log_category: category,
   });
 
   if (error) throw new Error(error.message);
@@ -54,7 +61,7 @@ const getLatestExerciseLogsLastMonth = async ({
   return data;
 };
 
-const getProgressTable = async () => {
+const getProgressTable = async (): Promise<TopExerciseProgress> => {
   const { data, error } = await supabase.rpc("progress_table");
 
   if (error) throw new Error(error.message);
@@ -81,7 +88,9 @@ const insertLog = async (exerciseLog: {
   const { data, error } = await supabase
     .from("workout_logs")
     .insert([newRow])
-    .select("id, created_at, reps, exercise!inner(id, category, name, step)");
+    .select<string, ExerciseLog>(
+      "id, created_at, reps, exercise!inner(id, category, name, step)",
+    );
 
   if (error) throw new Error(error.message);
 
@@ -102,10 +111,11 @@ const deleteLog = async (id: string) => {
 const useFetchPaginatedExerciseLogsByCategory = (
   category: ExerciseCategory,
   page: number,
+  size: number,
 ) =>
   useQuery(
-    ["exercise-logs", category, page],
-    getPaginatedExerciseLogsByCategory,
+    ["exercise-logs", category, page, size],
+    () => getPaginatedExerciseLogsByCategory(category, page, size),
     { keepPreviousData: true, refetchOnWindowFocus: false },
   );
 
@@ -116,9 +126,8 @@ const useFetchExerciseLogsPerDay = () =>
   useQuery(["exercise-logs"], getExerciseLogsPerDay);
 
 const useFetchLatestExerciseLogsLastMonth = (category: ExerciseCategory) =>
-  useQuery(
-    ["exercise-logs-last-month", category],
-    getLatestExerciseLogsLastMonth,
+  useQuery(["exercise-logs-last-month", category], () =>
+    getLatestExerciseLogsLastMonth(category),
   );
 
 const createExerciseLogMutation = (mutationFn: MutationFunction) => () => {

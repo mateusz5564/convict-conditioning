@@ -1,16 +1,18 @@
 import { useMutation } from "react-query";
 
-import { UserCredentials } from "@supabase/supabase-js";
+import { SignUpWithPasswordCredentials } from "@supabase/supabase-js";
 import supabase from "supabase/supabaseClient";
 
 const useRegister = () => {
-  const mutation = useMutation(async (credentials: UserCredentials) => {
-    const { error } = await supabase.auth.signUp(credentials);
+  const mutation = useMutation(
+    async (credentials: SignUpWithPasswordCredentials) => {
+      const { error } = await supabase.auth.signUp(credentials);
 
-    if (error) {
-      throw new Error(error.message);
-    }
-  });
+      if (error) {
+        throw new Error(error.message);
+      }
+    },
+  );
 
   return mutation;
 };

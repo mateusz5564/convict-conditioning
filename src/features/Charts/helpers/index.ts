@@ -1,7 +1,9 @@
-import { ExerciseLog } from "types";
+import { LatestExerciseLogLastMonth } from "types";
 
-const getChartData = (workoutPartLogs: Array<ExerciseLog>) => {
-  if (workoutPartLogs.length < 2) return [];
+const getChartData = (
+  workoutPartLogs: Array<LatestExerciseLogLastMonth> | undefined,
+) => {
+  if (!workoutPartLogs || workoutPartLogs.length < 2) return [];
 
   const data = workoutPartLogs.map((log) => ({
     x: log.created_at.substring(0, 10),

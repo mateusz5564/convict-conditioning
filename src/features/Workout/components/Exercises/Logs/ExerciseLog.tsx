@@ -7,7 +7,7 @@ import { getDayAndMonth } from "utils/date";
 
 interface Props {
   exerciseLog: {
-    id: string;
+    id: number;
     created_at: string;
     name: string;
     step: number;

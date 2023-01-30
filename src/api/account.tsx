@@ -3,7 +3,7 @@ import { useMutation } from "react-query";
 import supabase from "supabase/supabaseClient";
 
 const updateEmail = async ({ email }: { email: string }) => {
-  const { data, error } = await supabase.auth.update({ email });
+  const { data, error } = await supabase.auth.updateUser({ email });
 
   if (error) throw new Error(error.message);
 
@@ -11,7 +11,7 @@ const updateEmail = async ({ email }: { email: string }) => {
 };
 
 const resetPassword = async ({ email }: { email: string }) => {
-  const { data, error } = await supabase.auth.api.resetPasswordForEmail(email, {
+  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
     redirectTo: window.location.origin,
   });
 
@@ -21,7 +21,7 @@ const resetPassword = async ({ email }: { email: string }) => {
 };
 
 const updatePassword = async ({ newPassword }: { newPassword: string }) => {
-  const { data, error } = await supabase.auth.update({
+  const { data, error } = await supabase.auth.updateUser({
     password: newPassword,
   });
 

@@ -14,21 +14,31 @@ export const AuthContextProvider = ({ children }: ChildrenProp) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const session = supabase.auth.session();
-    setUser(session?.user);
+    const getSession = async () => {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (event, changedSession) => {
-        setUser(changedSession?.user);
-        queryClient.invalidateQueries();
-        if (event === "PASSWORD_RECOVERY") {
-          navigate("/recover");
-        }
-      },
-    );
+      if (error) throw new Error(error.message);
+
+      setUser(session?.user);
+    };
+
+    getSession();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, changedSession) => {
+      setUser(changedSession?.user);
+      queryClient.invalidateQueries();
+      if (event === "PASSWORD_RECOVERY") {
+        navigate("/recover");
+      }
+    });
 
     return () => {
-      listener?.unsubscribe();
+      subscription.unsubscribe();
     };
   }, []);
 

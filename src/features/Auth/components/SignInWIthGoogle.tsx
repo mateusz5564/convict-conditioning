@@ -1,12 +1,12 @@
 import SignInWithGoogleButton from "components/Buttons/SignInWithGoogleButton";
 
-import useLogin from "../hooks/useLogin";
+import useLoginWithOAuth from "../hooks/useLoginWithOAuth";
 
 const SignInWithGoogle = () => {
-  const { mutate: login } = useLogin();
+  const { mutate: login } = useLoginWithOAuth();
 
   const handleGoogleSignInClick = () => {
-    login({ provider: "google" });
+    login("google");
   };
 
   return <SignInWithGoogleButton onClick={handleGoogleSignInClick} />;

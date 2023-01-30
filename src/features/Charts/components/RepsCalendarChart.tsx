@@ -2,13 +2,13 @@ import { Box, Paper } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { useTheme } from "@mui/material/styles";
 import { ResponsiveTimeRange } from "@nivo/calendar";
-import { ExerciseLogsPerDay } from "types";
+import { ExerciseLogPerDay } from "types";
 import { getDaysBefore } from "utils/date";
 
 import useChartTheme from "../theme";
 
 type Props = {
-  exerciseLogs: Array<ExerciseLogsPerDay>;
+  exerciseLogs: Array<ExerciseLogPerDay>;
 };
 
 const RepsCalendarChart = ({ exerciseLogs }: Props) => {

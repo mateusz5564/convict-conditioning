@@ -33,9 +33,29 @@ export interface ExerciseLog {
   reps: number[];
 }
 
-export interface ExerciseLogsPerDay {
+export interface ExerciseLogPerDay {
   day: string;
   value: number;
+}
+
+export interface LatestExerciseLogLastMonth {
+  id: number;
+  created_at: string;
+  reps: number[];
+  exercise: number;
+  category: ExerciseCategory;
+  name: string;
+  step: number;
+}
+
+export interface ExerciseProgress {
+  exercise_category: ExerciseCategory;
+  exercise_step: number;
+  exercise_lvl_reached: number;
+}
+
+export interface TopExerciseProgress {
+  [key: string]: ExerciseProgress;
 }
 
 export interface WorkoutPart {
