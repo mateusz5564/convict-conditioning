@@ -1,7 +1,7 @@
 import { Container } from "@mui/material";
 import AppRoutes from "AppRoutes";
+import BottomNav from "components/BottomNav/BottomNav";
 import { AccountMenu } from "features/Auth";
-import BottomNav from "features/BottomNav";
 
 const App = () => {
   return (

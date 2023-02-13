@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 
-import { getHashMessage } from "helpers";
+import { getHashMessage } from "components/helpers";
 
 type Props = {
   children: (hashMessage: string | null) => JSX.Element;
