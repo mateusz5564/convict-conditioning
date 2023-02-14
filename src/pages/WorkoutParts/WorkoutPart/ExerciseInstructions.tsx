@@ -1,8 +1,7 @@
 import { Box } from "@mui/material";
+import ExerciseInstruction from "features/Workout/components/Exercises/Instructions/ExerciseInstruction";
+import useWorkoutPartContext from "features/Workout/hooks/useWorkoutPartContext";
 import { Exercise } from "types";
-
-import useWorkoutPartContext from "../../../hooks/useWorkoutPartContext";
-import ExerciseInstruction from "./ExerciseInstruction";
 
 const ExerciseInstructions = () => {
   const { workoutPart } = useWorkoutPartContext();

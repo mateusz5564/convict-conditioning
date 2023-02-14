@@ -9,16 +9,14 @@ import {
 } from "features/Auth";
 import ChangeEmail from "features/Auth/components/ChangeEmail";
 import ChangePassword from "features/Auth/components/ChangePassword";
-import {
-  ExerciseInstructions,
-  ExerciseLogs,
-  WorkoutPart,
-} from "features/Workout";
 import NewPassword from "pages/NewPassword";
+import WorkoutParts from "pages/WorkoutParts";
+import WorkoutPart from "pages/WorkoutParts/WorkoutPart";
+import ExerciseInstructions from "pages/WorkoutParts/WorkoutPart/ExerciseInstructions";
+import ExerciseLogs from "pages/WorkoutParts/WorkoutPart/ExerciseLogs";
 
 import AccountSettings from "./pages/AccountSettings";
 import Overview from "./pages/Overview";
-import WorkoutParts from "./pages/WorkoutParts";
 
 const AppRoutes = () => {
   const user = useAuthContext();

@@ -5,11 +5,10 @@ import exerciseApi from "api/exercise";
 import LoadingSpinner from "components/CircularProgress/CircularProgress";
 import OverlayLoadingSpinner from "features/Auth/components/shared/OverlayLoadingSpinner";
 import { ExerciseRepsLineChart } from "features/Charts";
-
-import useWorkoutPartContext from "../../../hooks/useWorkoutPartContext";
-import AddExerciseLog from "./AddExerciseLog";
-import ExerciseLog from "./ExerciseLog";
-import NoLogs from "./NoLogs";
+import AddExerciseLog from "features/Workout/components/Exercises/Logs/AddExerciseLog";
+import ExerciseLog from "features/Workout/components/Exercises/Logs/ExerciseLog";
+import NoLogs from "features/Workout/components/Exercises/Logs/NoLogs";
+import useWorkoutPartContext from "features/Workout/hooks/useWorkoutPartContext";
 
 const ExerciseLogs = () => {
   const { workoutPart } = useWorkoutPartContext();

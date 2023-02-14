@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 
-import useWorkoutPartContext from "../../hooks/useWorkoutPartContext";
-import ExercisesNavigation from "../Exercises/ExercisesNavigation";
+import ExercisesNavigation from "features/Workout/components/Exercises/ExercisesNavigation";
+import useWorkoutPartContext from "features/Workout/hooks/useWorkoutPartContext";
 
 const WorkoutPart = () => {
   const { workoutPart } = useWorkoutPartContext();
