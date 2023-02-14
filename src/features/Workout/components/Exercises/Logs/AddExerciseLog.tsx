@@ -16,7 +16,7 @@ import { getLabelForReps } from "../../../helpers";
 
 type Inputs = {
   exerciseId: number | "";
-  reps: { value: number }[];
+  reps: { value: number | "" }[];
 };
 
 const AddExerciseLog = () => {
@@ -28,7 +28,7 @@ const AddExerciseLog = () => {
   } = workoutPartApi.useFetchWorkoutParts();
   const mutation = exerciseApi.useAddExerciseLog();
 
-  const defaultFormValues: Inputs = { exerciseId: "", reps: [{ value: 0 }] };
+  const defaultFormValues: Inputs = { exerciseId: "", reps: [{ value: "" }] };
   const {
     control,
     formState: { errors },
@@ -52,7 +52,7 @@ const AddExerciseLog = () => {
   )?.exercises;
 
   const onAddSet = () => {
-    appendRep({ value: 0 });
+    appendRep({ value: "" });
   };
 
   const onRemoveSet = () => {
