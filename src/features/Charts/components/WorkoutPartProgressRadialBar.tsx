@@ -76,6 +76,7 @@ const WorkoutPartProgress = ({ workoutProgress }: Props) => {
             radialAxisStart={null}
             circularAxisOuter={null}
             cornerRadius={3}
+            isInteractive={false}
           />
         </Box>
       </Box>
