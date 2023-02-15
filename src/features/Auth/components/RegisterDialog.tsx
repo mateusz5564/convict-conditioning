@@ -62,7 +62,7 @@ const RegisterDialog = () => {
             <ErrorAlert>{error.message}</ErrorAlert>
           )}
 
-          <SubmitButton loading={isLoading} sx={{ mt: 2 }}>
+          <SubmitButton loading={isLoading} sx={{ my: 1 }}>
             Sign Up
           </SubmitButton>
         </Form>
