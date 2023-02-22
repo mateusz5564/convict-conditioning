@@ -1,9 +1,10 @@
 const getDayAndMonth = (timestamp: Date | string) => {
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "short",
+  });
   const date = new Date(timestamp);
-  const day = date.getDate();
-  const month = date.getMonth();
-
-  return `${day < 10 ? "0" : ""}${day}-${month < 9 ? "0" : ""}${month + 1}`;
+  return formatter.format(date);
 };
 
 const isOlderThan30Days = (timestamp: Date | string) => {

@@ -7,6 +7,7 @@ import OverlayLoadingSpinner from "features/Auth/components/shared/OverlayLoadin
 import { ExerciseRepsLineChart } from "features/Charts";
 import AddExerciseLog from "features/Workout/components/Exercises/Logs/AddExerciseLog";
 import ExerciseLog from "features/Workout/components/Exercises/Logs/ExerciseLog";
+import NextLevel from "features/Workout/components/Exercises/Logs/NextLevel";
 import NoLogs from "features/Workout/components/Exercises/Logs/NoLogs";
 import useWorkoutPartContext from "features/Workout/hooks/useWorkoutPartContext";
 
@@ -35,6 +36,7 @@ const ExerciseLogs = () => {
   return (
     <div>
       <ExerciseRepsLineChart category={workoutPart.category} />
+      <NextLevel category={workoutPart.category} />
       <AddExerciseLog />
 
       {!logs?.count && <NoLogs />}

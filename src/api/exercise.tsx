@@ -65,7 +65,6 @@ const getProgressTable = async (): Promise<TopExerciseProgress> => {
   const { data, error } = await supabase.rpc("progress_table");
 
   if (error) throw new Error(error.message);
-
   return getTopLevelsReached(data);
 };
 
@@ -112,12 +111,21 @@ const useFetchPaginatedExerciseLogsByCategory = (
   category: ExerciseCategory,
   page: number,
   size: number,
-) =>
-  useQuery(
+) => {
+  const queryClient = useQueryClient();
+
+  return useQuery(
     ["exercise-logs", category, page, size],
     () => getPaginatedExerciseLogsByCategory(category, page, size),
-    { keepPreviousData: true, refetchOnWindowFocus: false },
+    {
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
+      onSuccess: () => {
+        queryClient.invalidateQueries("progress-table");
+      },
+    },
   );
+};
 
 const useFetchProgressTable = () =>
   useQuery(["progress-table"], getProgressTable);
