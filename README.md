@@ -9,11 +9,11 @@ So this app is created to allow us to track and visualize our workout progress.
 
 1 of 6 exercise sets (pushups):
 
-<img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaCD-Negh7t3WGiKEkHbwxxEmV5OZNC0k9ZjbUjD65K6CsLvgoT2A4tAVlNHOgxbZ_nm8WP-os5vyXEkxiqhPAnd3kG_dw=w1320-h782" alt="Pushups exercise table" style="margin: 0 auto; width: 100%">
+<img src="https://i.ibb.co/bQLDWpj/Desktop-1-1.jpg" alt="Pushups exercise table" style="margin: 0 auto; width: 100%">
 
 ## Screens
   
-<img src="https://lh3.googleusercontent.com/u/0/drive-viewer/AK7aPaAW7k-SziBK__fm75UXphVp0XiAVVVci_m2Xwmc8hLP-FMM7Ofd9SvHfrou8GYXBcp5dUT_AHgDDSjcpGsPcIKxtOpD2A=w1320-h782" alt="screens from the app">
+<img src="https://i.ibb.co/MDNvyp3/Convict-conditioning-miniatura.jpg" alt="screens from the app">
 
 <img src="https://i.ibb.co/KxW1D7w/Convict-conditioning-auth.jpg" alt="Convict-conditioning-auth" style="margin: 0 auto; width: 100%">
 
